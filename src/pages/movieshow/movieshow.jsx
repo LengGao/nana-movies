@@ -1,10 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text ,Image, Swiper, SwiperItem } from '@tarojs/components'
 import log from '../../static/img/default.jpg'
-import './index.scss'
+import './movieshow.scss'
 
 
-export default class Index extends Component {
+export default class Movieshow extends Component {
 
   config = {
     navigationBarTitleText: '首页'

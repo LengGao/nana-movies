@@ -1,10 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text ,Image, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Text, Input ,Image, Swiper, SwiperItem } from '@tarojs/components'
+import { AtButton } from 'taro-ui'
 import log from '../../static/img/default.jpg'
-import './index.scss'
+import './home.scss'
 
-
-export default class Index extends Component {
+export default class Home extends Component {
 
   config = {
     navigationBarTitleText: '首页'

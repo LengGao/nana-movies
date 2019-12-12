@@ -1,6 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import '@tarojs/async-await'
 import Index from './pages/index/index'
+import './taro-ui.css'
+import './custom-theme.scss'
+import './app.scss'
+import $ from './utils/format'
 
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -26,8 +30,8 @@ class App extends Component {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    tabBar: [
-    ]
+    // tabBar: [
+    // ]
   }
 
   componentDidMount () { }
@@ -46,5 +50,6 @@ class App extends Component {
     )
   }
 }
+import { from } from '_array-flatten@2.1.2@array-flatten'
 
 Taro.render(<App />, document.getElementById('app'))
