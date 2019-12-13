@@ -4,7 +4,6 @@ import Index from './pages/index/index'
 import './taro-ui.css'
 import './custom-theme.scss'
 import './app.scss'
-import $ from './utils/format'
 
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -13,7 +12,11 @@ import $ from './utils/format'
 //   require('nerv-devtools')
 // }
 
+
+
 class App extends Component {
+
+  componentDidMount () { }
 
   config = {
     pages: [
@@ -22,7 +25,7 @@ class App extends Component {
       'pages/home/home',//影评- 新品 - 人气
       'pages/photoshow/photoshow',//照片展示页
       'pages/movieshow/movieshow',// 电影展示页码
-      'pages/selfspace/selfspace',//个人中心
+      'pages/selfspace/selfspace'//个人中心
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -30,11 +33,41 @@ class App extends Component {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    // tabBar: [
-    // ]
+    tabBar: {
+      color: '#000000',
+      selectedColor: '#ff0000',
+      backgroundColor: '#ffffff',
+      borderStyle: 'black',
+      position: 'bottom',
+      custom: false,
+      list: [
+        {
+          iconPath: require('./static/img/select.png'),
+          selectedIconPath: require('./static/img/selected.png'),
+          pagePath: 'pages/home/home',
+          text: '推荐'
+        },
+        {
+          iconPath: require('./static/img/select.png'),
+          selectedIconPath: require('./static/img/selected.png'),
+          pagePath: 'pages/photoshow/photoshow',
+          text: '摄影作品'
+        },
+        {
+          iconPath: require('./static/img/select.png'),
+          selectedIconPath: require('./static/img/selected.png'),
+          pagePath: 'pages/movieshow/movieshow',
+          text: '影视作品'
+        },
+        {
+          iconPath: require('./static/img/select.png'),
+          selectedIconPath: require('./static/img/selected.png'),
+          pagePath: 'pages/selfspace/selfspace',
+          text: '个人中心'
+        }
+      ]
+    }
   }
-
-  componentDidMount () { }
 
   componentDidShow () { }
 
@@ -50,6 +83,5 @@ class App extends Component {
     )
   }
 }
-import { from } from '_array-flatten@2.1.2@array-flatten'
 
 Taro.render(<App />, document.getElementById('app'))

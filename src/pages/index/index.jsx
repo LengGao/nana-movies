@@ -1,6 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text ,Image, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Text, Image, Swiper, SwiperItem } from '@tarojs/components'
 import log from '../../static/img/default.jpg'
+import { toast } from '../../utils/must'
+
 import './index.scss'
 
 
@@ -26,6 +28,9 @@ export default class Index extends Component {
   }
 
   componentWillMount () {
+    console.log('toast', toast)
+    let a = toast.showActionSheet(["1", "2", "3"])
+    console.log('a', a)
   }
   componentDidMount () {
   }
