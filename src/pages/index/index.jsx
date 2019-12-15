@@ -1,9 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Text, Image, Swiper, SwiperItem, Input, Button } from '@tarojs/components'
 import log from '../../static/img/default.jpg'
-import { toast } from '../../utils/must'
-
 import './index.scss'
+import WxValidate from '../../validator/WxValidate'
+
 
 
 export default class Index extends Component {
@@ -16,6 +16,7 @@ export default class Index extends Component {
     this.state = {
 
     }
+
   }
 
   handlerChange (e) {
@@ -26,13 +27,20 @@ export default class Index extends Component {
       }, 1000);
     }
   }
+  xxx(e){
+    this.WxValidate = new WxValidate();
+    const params = e.detail.value  
+    // if (!this.WxValidate.mthods.notEmpty(params)) {
+      console.log("试试1",WxValidate.methods)
+    // }else{
+      console.log("试试2",WxValidate.methods)
+    // }
+  }
 
   componentWillMount () {
-    console.log('toast', toast)
-    let a = toast.showActionSheet(["1", "2", "3"])
-    console.log('a', a)
   }
   componentDidMount () {
+   
   }
 
   componentWillUnmount () { }
@@ -75,6 +83,8 @@ export default class Index extends Component {
             </View>
           </SwiperItem>
         </Swiper>
+        <Input placeholder="情书" data-validate="notEmpty" class='wxValidate' />
+        <Button onClick={this.xxx.bind(this)}>我试试</Button>
       </View>
     )
   }

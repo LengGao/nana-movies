@@ -26,6 +26,8 @@ export default class Authorization extends Component {
   }
 
   componentWillMount () {
+    let currentPages = Taro.getCurrentPages()
+    console.log('currentPages', currentPages)
   }
   componentDidMount () {
   }
