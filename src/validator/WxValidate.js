@@ -6,32 +6,32 @@ import Taro from '@tarojs/taro'
  * @param {Object} messages 验证字段的提示信息 * 
  */
 const util = require('./util.js')
-console.log("程序来啦",util)
+console.log("程序来啦", util)
 class WxValidate {
   constructor() {
     this.__initDefaults();
     this.__init()
-    this.__getRules();    
+    this.__getRules();
   }
 
-  __getRules() {
+  __getRules () {
     const that = this
     const rules = {};
     const messages = {};
     const query = Taro.createSelectorQuery();
     query.selectAll(".wxValidate").fields({
       id: true,
-      size:true,
+      size: true,
       dataset: true,
-      rect:true,
-      properties: ['name','validate', 'fieldname'],
+      rect: true,
+      properties: ['name', 'validate', 'fieldname'],
       context: true
-    }, function(res) {
-      console.log("fields",res)
-      res.dataset      
+    }, function (res) {
+      console.log("fields", res)
+      res.dataset
       res.context
-    }).exec(function(res) {
-      console.log("exec",res)
+    }).exec(function (res) {
+      console.log("exec", res)
       const arr = res[0];
       for (const i in arr) {
         //console.log(arr[i])
@@ -39,12 +39,12 @@ class WxValidate {
         var id = arr[i].id;
         var fieldname = arr[i].dataset.fieldname;
         var validate = util.trim(arr[i].dataset.validate);
-        rules[id] = util.defaultIfEmpty(rules[id], {});        
+        rules[id] = util.defaultIfEmpty(rules[id], {});
         messages[id] = util.defaultIfEmpty(messages[id], {})
         messages[id].top = arr[i].top;
         messages[id].left = arr[i].left;
-        messages[id].width = arr[i].width;       
-        that.__getFormatValidate(rules[id], messages[id], id,  validate);
+        messages[id].width = arr[i].width;
+        that.__getFormatValidate(rules[id], messages[id], id, validate);
       }
     });
 
@@ -55,7 +55,7 @@ class WxValidate {
     })
   }
 
-  __getFormatValidate(rule = {}, message = {}, id, validate) {    
+  __getFormatValidate (rule = {}, message = {}, id, validate) {
     const str = util.formatString('[{0}]设置的验证有错误，请修改 ：{1}', new Array(id, validate));
     if (util.isEmpty(id) || util.isEmpty(validate)) {
       util.alert('提示1', str)
@@ -81,7 +81,7 @@ class WxValidate {
           let regMax = /\[,\d+\]$/; //[,10]            
           if (reg.test(s)) {
             rule[validateKey] = value.split(",");
-            message[validateKey] = util.formatString( "请输入长度在 {0} 到 {1} 之间的字符！", rule[validateKey]);
+            message[validateKey] = util.formatString("请输入长度在 {0} 到 {1} 之间的字符！", rule[validateKey]);
           } else if (regMin.test(s)) {
             rule.minSize = value;
             message.minSize = util.formatString("最少要输入{0}个字符！", rule.minSize);
@@ -161,7 +161,7 @@ class WxValidate {
   /**
    * __init
    */
-  __init() {
+  __init () {
     this.__initMethods()
     this.__initData()
   }
@@ -169,10 +169,10 @@ class WxValidate {
   /**
    * 初始化数据
    */
-  __initData() {
+  __initData () {
     //手机屏幕宽度
     const screenWidth = Taro.getSystemInfoSync().screenWidth;
-    this.site = { screenWidth: screenWidth, errorTextWidth:200}
+    this.site = { screenWidth: screenWidth, errorTextWidth: 200 }
     //错误提示框转换为像素单位的宽度，400rpx=>px
     //this.site.errorTextWidth = Math.ceil((400*screenWidth)/750);    
     this.form = {}
@@ -182,7 +182,7 @@ class WxValidate {
   /**
    * 初始化默认提示信息
    */
-  __initDefaults() {
+  __initDefaults () {
     this.defaults = {
       messages: {
         notEmpty: '此项不能为空！',
@@ -203,13 +203,13 @@ class WxValidate {
   /**
    * 初始化默认验证方法
    */
-  __initMethods() {
+  __initMethods () {
     const that = this
     that.methods = {
       /**
        * 验证必填元素
        */
-      notEmpty(value, param) {
+      notEmpty (value, param) {
         if (!that.depend(param)) {
           return 'dependency-mismatch'
         } else if (typeof value === 'number') {
@@ -222,116 +222,116 @@ class WxValidate {
       /**
        * 验证电子邮箱格式
        */
-      email(value) {
+      email (value) {
         return that.optional(value) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value)
       },
       /**
        * 验证手机格式
        */
-      phone(value) {
+      phone (value) {
         return that.optional(value) || /^1[3-9]\d{9}$/.test(value)
       },
       /**
        * 验证座机格式
        */
-      tel(value) {
+      tel (value) {
         return that.optional(value) || /^[0-9]{3,4}(\-)?[0-9]{6,8}(\-)?([0-9]{1,4})$/.test(value)
       },
       /**
        * 验证URL格式
        */
-      url(value) {
+      url (value) {
         return that.optional(value) || /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
       },
       /**
        * 验证日期格式
        */
-      date(value) {
+      date (value) {
         return that.optional(value) || !/Invalid|NaN/.test(new Date(value).toString())
       },
       /**
        * 验证ISO类型的日期格式
        */
-      dateISO(value) {
+      dateISO (value) {
         return that.optional(value) || /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value)
       },
       /**
        * 验证十进制数字
        */
-      number(value) {
+      number (value) {
         return that.optional(value) || /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value)
       },
       /**
        * 验证整数
        */
-      int(value) {
+      int (value) {
         return that.optional(value) || /^\d+$/.test(value)
       },
       /**
        * 验证身份证号码
        */
-      idcard(value) {
+      idcard (value) {
         return that.optional(value) || util.isEmpty(util.idCard(value))
       },
       /**
        * 验证两个输入框的内容是否相同
        */
-      equals(value, param) {
+      equals (value, param) {
         return that.optional(value) || value === that.data[param]
       },
       /**
        * 验证是否包含某个值
        */
-      contains(value, param) {
+      contains (value, param) {
         return that.optional(value) || value.indexOf(param) >= 0
       },
       /**
        * 验证最小长度
        */
-      minSize(value, param) {
+      minSize (value, param) {
         return that.optional(value) || util.len(value) >= param
       },
       /**
        * 验证最大长度
        */
-      maxSize(value, param) {
+      maxSize (value, param) {
         return that.optional(value) || util.len(value) <= param
       },
       /**
        * 验证一个长度范围[min, max]
        */
-      size(value, param) {
+      size (value, param) {
         const len = util.len(value);
         return that.optional(value) || (len >= param[0] && len <= param[1])
       },
       /**
        * 验证最小值，包含最小的值
        */
-      min(value, param) {
+      min (value, param) {
         return that.optional(value) || value >= param
       },
       /**
        * 验证最小值，不包含最小的值
        */
-      minLt(value, param) {
+      minLt (value, param) {
         return that.optional(value) || value > param
       },
       /**
        * 验证最大值，包含最大的值
        */
-      max(value, param) {
+      max (value, param) {
         return that.optional(value) || value <= param
       },
       /**
        * 验证最大值，不包含最大的值
        */
-      maxGt(value, param) {
+      maxGt (value, param) {
         return that.optional(value) || value < param
       },
       /**
        * 验证一个值范围[min, max]
        */
-      range(value, param) {
+      range (value, param) {
         const v = value * 1;
         return that.optional(value) || (v >= param[0] * 1 && v <= param[1] * 1)
       },
@@ -344,7 +344,7 @@ class WxValidate {
    * @param {Function} method 函数体，接收两个参数(value, param)，value表示元素的值，param表示参数
    * @param {String} message 提示信息
    */
-  addMethod(name, method, message) {
+  addMethod (name, method, message) {
     this.methods[name] = method
     this.defaults.messages[name] = message !== undefined ? message : this.defaults.messages[name]
   }
@@ -352,7 +352,7 @@ class WxValidate {
   /**
    * 判断验证方法是否存在
    */
-  isValidMethod(value) {
+  isValidMethod (value) {
     let methods = []
     for (let method in this.methods) {
       if (method && typeof this.methods[method] === 'function') {
@@ -365,10 +365,10 @@ class WxValidate {
   /**
    * 格式化提示信息模板
    */
-  formatTpl(source, params) {
+  formatTpl (source, params) {
     const that = this
     if (arguments.length === 1) {
-      return function() {
+      return function () {
         let args = Array.from(arguments)
         args.unshift(source)
         return that.formatTpl.apply(this, args)
@@ -383,8 +383,8 @@ class WxValidate {
     if (params.constructor !== Array) {
       params = [params]
     }
-    params.forEach(function(n, i) {
-      source = source.replace(new RegExp("\\{" + i + "\\}", "g"), function() {
+    params.forEach(function (n, i) {
+      source = source.replace(new RegExp("\\{" + i + "\\}", "g"), function () {
         return n
       })
     })
@@ -394,7 +394,7 @@ class WxValidate {
   /**
    * 判断规则依赖是否存在
    */
-  depend(param) {
+  depend (param) {
     switch (typeof param) {
       case 'boolean':
         param = param
@@ -413,7 +413,7 @@ class WxValidate {
   /**
    * 判断输入值是否为空
    */
-  optional(value) {
+  optional (value) {
     return !this.methods.notEmpty(value) && 'dependency-mismatch'
   }
 
@@ -422,7 +422,7 @@ class WxValidate {
    * @param {String} param 字段名
    * @param {Object} rule 规则
    */
-  customMessage(param, rule) {
+  customMessage (param, rule) {
     const params = this.messages[param]
     const isObject = typeof params === 'object'
     if (params && isObject) return params[rule.method]
@@ -433,7 +433,7 @@ class WxValidate {
    * @param {String} param 字段名
    * @param {Object} rule 规则
    */
-  defaultMessage(param, rule) {
+  defaultMessage (param, rule) {
     let message = this.customMessage(param, rule) || this.defaults.messages[rule.method]
     let type = typeof message
 
@@ -452,24 +452,24 @@ class WxValidate {
    * @param {Object} rule 规则
    * @param {String} value 元素的值
    */
-  formatTplAndAdd(param, rule, value) {
-    const site = this.messages[param];  
+  formatTplAndAdd (param, rule, value) {
+    const site = this.messages[param];
     //错误提示框转换为像素单位的宽度
-    const errorTextWidth=this.site.errorTextWidth;    
+    const errorTextWidth = this.site.errorTextWidth;
     //最大距离左边位置的px值
-    const maxLeft = this.site.screenWidth-errorTextWidth-15;
+    const maxLeft = this.site.screenWidth - errorTextWidth - 15;
     //错误提示框与表单右对齐时的距离左边的距离
-    const alignRightLeft = site.left+site.width-errorTextWidth+10;
-    let left = maxLeft;    
-    if(errorTextWidth<site.width){
-      if(alignRightLeft<maxLeft){
+    const alignRightLeft = site.left + site.width - errorTextWidth + 10;
+    let left = maxLeft;
+    if (errorTextWidth < site.width) {
+      if (alignRightLeft < maxLeft) {
         left = alignRightLeft;
       }
-    }else{
-      const a = site.left+site.width/2;
-      if(a<maxLeft){
-        left=a;
-      }  
+    } else {
+      const a = site.left + site.width / 2;
+      if (a < maxLeft) {
+        left = a;
+      }
     }
 
     let msg = this.defaultMessage(param, rule)
@@ -479,7 +479,7 @@ class WxValidate {
       msg: msg,
       value: value,
       top: site.top - 10,
-      left:left
+      left: left
     })
   }
 
@@ -489,7 +489,7 @@ class WxValidate {
    * @param {Object} rules 规则
    * @param {Object} data 需要验证的数据对象
    */
-  checkParam(param, rules, data) {
+  checkParam (param, rules, data) {
     // 缓存数据对象
     this.data = data
 
@@ -531,7 +531,7 @@ class WxValidate {
    * 设置字段的默认验证值
    * @param {String} param 字段名
    */
-  setView(param) {
+  setView (param) {
     this.form[param] = {
       $name: param,
       $valid: true,
@@ -549,7 +549,7 @@ class WxValidate {
    * @param {Boolean} result 是否通过验证
    * @param {String} value 字段的值
    */
-  setValue(param, method, result, value) {
+  setValue (param, method, result, value) {
     const params = this.form[param]
     params.$valid = result
     params.$invalid = !result
@@ -562,7 +562,7 @@ class WxValidate {
    * 验证所有字段的规则，返回验证是否通过
    * @param {Object} data 需要验证数据对象
    */
-  checkForm(data) {
+  checkForm (data) {
     this.__initData()
 
     for (let param in this.rules) {
@@ -576,21 +576,21 @@ class WxValidate {
   /**
    * 返回验证是否通过
    */
-  valid() {
+  valid () {
     return this.size() === 0
   }
 
   /**
    * 返回错误信息的个数
    */
-  size() {
+  size () {
     return this.errorList.length
   }
 
   /**
    * 返回所有错误信息
    */
-  validationErrors() {
+  validationErrors () {
     return this.errorList
   }
 }

@@ -1,8 +1,8 @@
 import must from './package/must'
-import  * as format from './package/format'
+import * as format from './package/format'
 import other from './package/other'
 
- class Utils {
+class Utils {
   static must = must
   static format = format
   static other = other

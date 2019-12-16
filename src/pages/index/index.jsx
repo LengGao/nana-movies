@@ -27,20 +27,20 @@ export default class Index extends Component {
       }, 1000);
     }
   }
-  xxx(e){
-    this.WxValidate = new WxValidate();
-    const params = e.detail.value  
-    // if (!this.WxValidate.mthods.notEmpty(params)) {
-      console.log("试试1",WxValidate.methods)
-    // }else{
-      console.log("试试2",WxValidate.methods)
-    // }
+  xxx () {
+    var Validate = new WxValidate();
+    Validate.rules = {
+      name: 'name'
+    }
+    let e = '132@163.com'
+    console.log("试试2", Validate.methods.email(e))
+    // api.demo("haha", "data")
   }
 
   componentWillMount () {
   }
   componentDidMount () {
-   
+
   }
 
   componentWillUnmount () { }

@@ -7,13 +7,14 @@ import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
+// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5') {
 //   require('nerv-devtools')
-// }
+// } 
 
 class App extends Component {
 
-  componentDidMount () { }
+  componentDidMount () {
+  }
   config = {
     pages: [
       'pages/index/index', //首页 展示照片-介绍小程序作用
@@ -38,26 +39,27 @@ class App extends Component {
       custom: false,
       list: [
         {
-          iconPath: require('./static/img/select.png'),
-          selectedIconPath: require('./static/img/selected.png'),
+          // iconPath: require('./static/img/select.png'),
+          iiconPathc: './static/img/select.png',
+          selectedIconPath: './static/img/selected.png',
           pagePath: 'pages/home/home',
           text: '推荐'
         },
         {
-          iconPath: require('./static/img/select.png'),
-          selectedIconPath: require('./static/img/selected.png'),
+          iconPath: './static/img/select.png',
+          selectedIconPath: './static/img/selected.png',
           pagePath: 'pages/photoshow/photoshow',
           text: '摄影作品'
         },
         {
-          iconPath: require('./static/img/select.png'),
-          selectedIconPath: require('./static/img/selected.png'),
+          iconPath: './static/img/select.png',
+          selectedIconPath: './static/img/selected.png',
           pagePath: 'pages/movieshow/movieshow',
           text: '影视作品'
         },
         {
-          iconPath: require('./static/img/select.png'),
-          selectedIconPath: require('./static/img/selected.png'),
+          iconPath: './static/img/select.png',
+          selectedIconPath: './static/img/selected.png',
           pagePath: 'pages/selfspace/selfspace',
           text: '个人中心'
         }

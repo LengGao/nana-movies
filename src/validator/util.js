@@ -1,22 +1,24 @@
 import Taro from '@tarojs/taro'
+import { toast } from '../utils/index'
+
 module.exports = {
   msg: msg,
-  alert:alert,
+  alert: alert,
   isEmpty: isEmpty,
   formatString: formatString,
   trim: trim,
-  defaultIfEmpty: defaultIfEmpty,  
-  idCard:idCard,
+  defaultIfEmpty: defaultIfEmpty,
+  idCard: idCard,
   hiddenValidateError: hiddenValidateError
 }
 
-function isEmpty(obj) {
+function isEmpty (obj) {
   return obj == "" || obj == undefined || obj == null || obj == "null";
 }
-function isNotEmpty(obj) {
+function isNotEmpty (obj) {
   return !isEmpty(obj);
 }
-function trim(str, delString) {
+function trim (str, delString) {
   if (isEmpty(str)) {
     str = "";
   } else {
@@ -28,10 +30,10 @@ function trim(str, delString) {
   }
   return str;
 }
-function defaultIfEmpty(obj, defaultObj) {
+function defaultIfEmpty (obj, defaultObj) {
   return isEmpty(obj) ? defaultObj : obj;
 }
-function msg(title, icon, duration) {
+function msg (title, icon, duration) {
   icon = defaultIfEmpty(icon, "success");
   duration = defaultIfEmpty(duration, 1000);
   Taro.showToast({
@@ -40,24 +42,24 @@ function msg(title, icon, duration) {
     duration: duration
   })
 }
-function alert(title, content){
+function alert (title, content) {
   title = defaultIfEmpty(title, '提示')
   Taro.showModal({
     title: title,
     content: content,
-    showCancel:false
+    showCancel: false
   })
 }
-function loadingMsg(title, mask) {
+function loadingMsg (title, mask) {
   Taro.showLoading({
     title: title,
     mask: defaultIfEmpty(mask, true)
   })
 }
-function formatString(source, params) {
-  if (isEmpty(params) || params.length==0) {
+function formatString (source, params) {
+  if (isEmpty(params) || params.length == 0) {
     return source
-  }  
+  }
   if (params.constructor !== Array) {
     params = [params]
   }
@@ -68,7 +70,7 @@ function formatString(source, params) {
   })
   return source
 }
-function idCard(idNum) {
+function idCard (idNum) {
   var errors = new Array(
     "验证通过",
     "身份证号码位数不对",
@@ -76,7 +78,7 @@ function idCard(idNum) {
     "身份证号码校验错误",
     "身份证地区非法"
   );
-   //身份号码位数及格式检验
+  //身份号码位数及格式检验
   var re;
   var len = idNum.length;
   //身份证位数检验
@@ -158,10 +160,10 @@ function idCard(idNum) {
   }
   return "";
 }
-function hiddenValidateError(event, ownerInstance) {
-  var index= event.target.dataset.index;
-  var instance = ownerInstance.selectComponent('.validateText'+index) // 返回组件的实例
+function hiddenValidateError (event, ownerInstance) {
+  var index = event.target.dataset.index;
+  var instance = ownerInstance.selectComponent('.validateText' + index) // 返回组件的实例
   instance.setStyle({
     "visibility": "hidden"
-  }) 
+  })
 }
