@@ -2,9 +2,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Swiper, SwiperItem, Input, Button } from '@tarojs/components'
 import log from '../../static/img/default.jpg'
 import './index.scss'
-import WxValidate from '../../validator/WxValidate'
-
-
 
 export default class Index extends Component {
 
@@ -14,34 +11,23 @@ export default class Index extends Component {
   constructor() {
     super(...arguments)
     this.state = {
-
     }
-
   }
 
   handlerChange (e) {
     if (e.detail.current === 3) {
       setTimeout(() => {
         // 去搜全页面
-        console.log("start", e)
+        Taro.switchTab({
+          url:'/pages/home/home'
+        })
       }, 1000);
     }
   }
-  xxx () {
-    var Validate = new WxValidate();
-    Validate.rules = {
-      name: 'name'
-    }
-    let e = '132@163.com'
-    console.log("试试2", Validate.methods.email(e))
-    // api.demo("haha", "data")
-  }
 
-  componentWillMount () {
-  }
-  componentDidMount () {
+  componentWillMount () {}
 
-  }
+  componentDidMount () {}
 
   componentWillUnmount () { }
 
@@ -83,8 +69,6 @@ export default class Index extends Component {
             </View>
           </SwiperItem>
         </Swiper>
-        <Input placeholder="情书" data-validate="notEmpty" class='wxValidate' />
-        <Button onClick={this.xxx.bind(this)}>我试试</Button>
       </View>
     )
   }

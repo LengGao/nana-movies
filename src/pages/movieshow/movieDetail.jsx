@@ -1,11 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text ,Image, Swiper, SwiperItem, Video } from '@tarojs/components'
 import log from '../../static/img/default.jpg'
-import {router} from '../../utils/index'
 import './movieshow.scss'
 
 
-export default class Movieshow extends Component {
+export default class MovieDetail extends Component {
 
   config = {
     navigationBarTitleText: '首页'
@@ -70,11 +69,6 @@ export default class Movieshow extends Component {
       }, 1000);
     }
   }
-  // 封面
-  handlerClick(e){
-    console.log("e",e.target.value)
-    router.navigateTo('./movieDetail',e.target.value)
-  }
 
   componentWillMount () {
   }
@@ -94,7 +88,7 @@ export default class Movieshow extends Component {
           this.state.VidemoList.map((item)=>{
             return (
               <View className='itemBox' taroKey={String(item.worksId)}>
-               <Image src={item.worksCover} mode='aspectFit' onClick={this.handlerClick.bind(this,item.worksId)}/>
+               <Image src={item.worksCover} mode='aspectFit' />
               <View className='author'>
                 <Image src={item.authorHeader} mode='aspectFit' />
                 <View className='info'>

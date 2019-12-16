@@ -17,12 +17,13 @@ class App extends Component {
   }
   config = {
     pages: [
-      'pages/index/index', //首页 展示照片-介绍小程序作用
-      'pages/login/authorization',//授权登录
+      // 'pages/index/index', //首页 展示照片-介绍小程序作用
       'pages/home/home',//影评- 新品 - 人气
       'pages/photoshow/photoshow',//照片展示页
-      'pages/movieshow/movieshow',// 电影展示页码
-      'pages/selfspace/selfspace'//个人中心
+      'pages/movieshow/movieshow',// 电影展示页码,
+      'pages/movieshow/movieDetail', // 电影详情 播放
+      'pages/selfspace/selfspace',//个人中心
+      'pages/login/login',//授权登录
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -39,8 +40,7 @@ class App extends Component {
       custom: false,
       list: [
         {
-          // iconPath: require('./static/img/select.png'),
-          iiconPathc: './static/img/select.png',
+          iconPath: './static/img/select.png',
           selectedIconPath: './static/img/selected.png',
           pagePath: 'pages/home/home',
           text: '推荐'

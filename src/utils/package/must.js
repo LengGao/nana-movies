@@ -88,12 +88,10 @@ let toast = {
 // 路由
 let router = {
   // 路由跳转 不能跳tabBar 页面栈最多10层
-  navigateTo (url, event) {
-    if (!events) {
-      Taro.navigateTo({
-        url
-      })
-    }
+  navigateTo (url, params) {
+    return Taro.navigateTo({
+        url: `${url}?${params}`
+    })
   },
   // 销毁当前页面
   redirectTo (url) {

@@ -12,6 +12,48 @@ export default class Photoshow extends Component {
   constructor() {
     super(...arguments)
     this.state = {
+      ImageList:[
+        {
+        authorName:'001',
+        authorName:'name',
+        authorHeader:'../../static/img/default.jpg',
+        authorFrom:'来自哪里',
+        authorWorks:'../../static/img/default.jpg',
+        worksId:'001',
+        worksType:'photo',
+        publihTime: '2019-12-12'
+        },
+        {
+          authorName:'001',
+          authorName:'name',
+          authorHeader:'../../static/img/default.jpg',
+          authorFrom:'来自哪里',
+          authorWorks:'../../static/img/default.jpg',
+          worksId:'001',
+          worksType:'photo',
+          publihTime: '2019-12-12'
+        },
+        {
+          authorName:'001',
+          authorName:'name',
+          authorHeader:'../../static/img/default.jpg',
+          authorFrom:'来自哪里',
+          authorWorks:'../../static/img/default.jpg',
+          worksId:'001',
+          worksType:'photo',
+          publihTime: '2019-12-12'
+        },
+        {
+          authorName:'001',
+          authorName:'name',
+          authorHeader:'../../static/img/default.jpg',
+          authorFrom:'来自哪里',
+          authorWorks:'../../static/img/default.jpg',
+          worksId:'001',
+          worksType:'photo',
+          publihTime: '2019-12-12'
+        }
+      ],
     }
   }
 
@@ -36,39 +78,24 @@ export default class Photoshow extends Component {
   componentDidHide () { }
 
   render () {
+  
     return (
       <View className='index'>
-        <Swiper
-          className='test-h'
-          indicatorColor='#999'
-          indicatorActiveColor='#333'
-          circular
-          indicatorDots
-          autoplay={false}
-          onChange={this.handlerChange.bind(this)}
-        >
-          <SwiperItem>
-            <View className='demo-text'>
-              <Image class='showImge' src={log} mode='aspectFit' />
+      {
+        this.state.ImageList.map((item)=>{
+          return (
+            <View className='itemBox' taroKey={String(item.worksId)}>
+            <Image src={item.authorWorks} mode='aspectFit' />
+            <View className='author'>
+              <Image src={item.authorHeader} mode='aspectFit' />
+              <View className='info'>
+              <View className='name'>name</View>
+              <View className='from'>from</View>
+              </View>
             </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text'>
-              <Image class='showImge' src={log} mode='aspectFit' />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text'>
-              <Image class='showImge' src={log} mode='aspectFit' />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text lastItem'>
-              <Image class='showImge' src={log} mode='aspectFit' style=' height: 80%;' />
-              <Text style='margin-left: 4%;'>宝贝~您来啦！</Text>
-            </View>
-          </SwiperItem>
-        </Swiper>
+          </View>);
+        })
+      }
       </View>
     )
   }

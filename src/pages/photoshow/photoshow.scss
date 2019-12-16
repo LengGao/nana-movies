@@ -1,0 +1,34 @@
+.index{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem;
+}
+
+.itemBox {
+    display: flex;
+    flex-direction: column;
+
+    Image {
+        width: 10.625rem;
+    }
+}
+
+
+.author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    Image {
+        width: 3.125rem;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin: 0.625rem;
+}
