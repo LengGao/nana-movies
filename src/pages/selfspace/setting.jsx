@@ -2,14 +2,15 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtForm, AtInput, AtButton } from 'taro-ui'
 import log from '../../static/img/default.jpg'
-import './login.scss'
+import './selfspace.scss'
 
 
-export default class Login extends Component {
+export default class Setting extends Component {
 
   config = {
     navigationBarTitleText: '首页'
   }
+
   constructor() {
     super(...arguments)
     this.state = {
@@ -31,17 +32,9 @@ export default class Login extends Component {
     })
   }
 
-  // 第三方登录
-  handlerOtherLogin () {
-    Taro.navigateTo({
-      url: './authorization'
-    })
-  }
-
   componentWillMount () {
   }
-  componentDidMount () {
-  }
+  componentDidMount () { }
 
   componentWillUnmount () { }
 
@@ -52,11 +45,11 @@ export default class Login extends Component {
   render () {
     return (
       <View className='index'>
-        <Image src={log} />
         <AtForm
           onSubmit={this.onSubmit.bind(this)}
           onReset={this.onReset.bind(this)}
         >
+          <Image src={log} />
           <AtInput
             name='value'
             title='文本'
@@ -68,9 +61,6 @@ export default class Login extends Component {
           <AtButton formType='submit'><Text>提交</Text></AtButton>
           <AtButton formType='reset'><Text>重置</Text></AtButton>
         </AtForm>
-        <View className='other-login'>
-          <Image src={log} onClick={this.handlerOtherLogin.bind(this)}></Image>
-        </View>
       </View>
     )
   }
