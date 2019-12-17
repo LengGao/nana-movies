@@ -2,11 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtForm, AtInput, AtButton } from 'taro-ui'
 import log from '../../static/img/default.jpg'
-import Validator from '../../validator/WxValidate'
 import './login.scss'
 
 
-export default class Login extends Component {
+export default class Register extends Component {
 
   config = {
     navigationBarTitleText: '首页'
@@ -23,6 +22,7 @@ export default class Login extends Component {
     })
   }
   onSubmit (event) {
+    console.log(this.state.value, event)
   }
   onReset (event) {
     console.log(this.state.value, event)
@@ -40,7 +40,8 @@ export default class Login extends Component {
 
   componentWillMount () {
   }
-  componentDidMount () { }
+  componentDidMount () {
+  }
 
   componentWillUnmount () { }
 
@@ -57,12 +58,10 @@ export default class Login extends Component {
           onReset={this.onReset.bind(this)}
         >
           <AtInput
-            className='wxValidate'
             name='value'
             title='文本'
             type='text'
             placeholder='单行文本'
-            data-validate='phone'
             value={this.state.value}
             onChange={this.handleChange.bind(this, 'value')}
           />

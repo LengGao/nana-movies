@@ -19,7 +19,7 @@ class WxValidate {
     const rules = {};
     const messages = {};
     const query = Taro.createSelectorQuery();
-    query.selectAll(".wxValidate").fields({
+    query.selectAll('#validate').fields({
       id: true,
       size: true,
       dataset: true,
@@ -27,9 +27,7 @@ class WxValidate {
       properties: ['name', 'validate', 'fieldname'],
       context: true
     }, function (res) {
-      console.log("fields", res)
-      res.dataset
-      res.context
+      console.log("fields", res,res.context)
     }).exec(function (res) {
       console.log("exec", res)
       const arr = res[0];

@@ -160,6 +160,8 @@ function idCard (idNum) {
   }
   return "";
 }
+
+
 function hiddenValidateError (event, ownerInstance) {
   var index = event.target.dataset.index;
   var instance = ownerInstance.selectComponent('.validateText' + index) // 返回组件的实例

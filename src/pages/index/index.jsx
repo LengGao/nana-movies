@@ -1,6 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Swiper, SwiperItem, Input, Button } from '@tarojs/components'
+import { AtForm, AtInput, AtButton } from 'taro-ui'
 import log from '../../static/img/default.jpg'
+import Vv from '../../validator/WxValidate'
 import './index.scss'
 
 export default class Index extends Component {
@@ -23,6 +25,10 @@ export default class Index extends Component {
         })
       }, 1000);
     }
+  }
+  xxx(){
+    var xx = new Vv()
+    console.log("xx",xx)
   }
 
   componentWillMount () {}
@@ -69,6 +75,8 @@ export default class Index extends Component {
             </View>
           </SwiperItem>
         </Swiper>
+        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd'/>
+        <AtButton onClick={this.xxx.bind(this)}>anniu</AtButton>
       </View>
     )
   }
