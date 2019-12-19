@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input ,Image, Swiper, SwiperItem } from '@tarojs/components'
-import { AtNoticebar,AtTabs, AtTabsPane,AtPagination } from 'taro-ui'
+import { View, Text, Input, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { AtNoticebar, AtTabs, AtTabsPane, AtPagination, AtInput, AtButton } from 'taro-ui'
 import log from '../../static/img/default.jpg'
+import Vv from '../../validator/WxValidate'
 import './home.scss'
 
 export default class Home extends Component {
@@ -19,9 +20,9 @@ export default class Home extends Component {
   handlerChange (e) {
   }
   // noticebar
-  handlerNoticebar() {
+  handlerNoticebar () {
   }
-  handlerGotoMore(){
+  handlerGotoMore () {
   }
   // tabs
   handleClick (value) {
@@ -30,14 +31,19 @@ export default class Home extends Component {
     })
   }
   // pagechage
-  handlerPageChange(e){
-    console.log("e",e)
+  handlerPageChange (e) {
+    console.log("e", e)
+  }
+
+  xxx () {
+    var xx = new Vv()
+    console.log("xx", xx)
   }
 
 
-  componentWillMount () {}
+  componentWillMount () { }
 
-  componentDidMount () {}
+  componentDidMount () { }
 
   componentWillUnmount () { }
 
@@ -49,8 +55,8 @@ export default class Home extends Component {
     const tabList = [{ title: '人气' }, { title: '新秀' }, { title: '预告' }]
     return (
       <View className='index'>
-        <AtNoticebar  marquee onClose={this.handlerNoticebar.bind(this)}
-        onGotoMore={this.handlerGotoMore.bind(this)}>
+        <AtNoticebar marquee onClose={this.handlerNoticebar.bind(this)}
+          onGotoMore={this.handlerGotoMore.bind(this)}>
           这是 NoticeB1ar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
         </AtNoticebar>
         <Swiper
@@ -85,24 +91,27 @@ export default class Home extends Component {
           </SwiperItem>
         </Swiper>
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
-        <AtTabsPane current={this.state.current} index={0} >
-          <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;' >标签页一的内容</View>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={1}>
-          <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页二的内容</View>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={2}>
-          <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页三的内容</View>
-        </AtTabsPane>
-      </AtTabs>
-      <AtPagination 
-        icon 
-        total={50} 
-        pageSize={10}
-        current={1}
-        onPageChange={this.handlerPageChange.bind(this)}
-      >
-      </AtPagination>
+          <AtTabsPane current={this.state.current} index={0} >
+            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;' >标签页一的内容</View>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={1}>
+            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页二的内容</View>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={2}>
+            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页三的内容</View>
+          </AtTabsPane>
+        </AtTabs>
+        <AtPagination
+          icon
+          total={50}
+          pageSize={10}
+          current={1}
+          onPageChange={this.handlerPageChange.bind(this)}
+        >
+        </AtPagination>
+        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd' />
+        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd' />
+        <AtButton onClick={this.xxx.bind(this)}>anniu</AtButton>
       </View>
     )
   }

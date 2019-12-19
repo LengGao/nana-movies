@@ -12,12 +12,18 @@ module.exports = {
   hiddenValidateError: hiddenValidateError
 }
 
+/**
+ * 
+ * @param {*} obj 要验证的对象
+ */
 function isEmpty (obj) {
   return obj == "" || obj == undefined || obj == null || obj == "null";
 }
+
 function isNotEmpty (obj) {
   return !isEmpty(obj);
 }
+
 function trim (str, delString) {
   if (isEmpty(str)) {
     str = "";
@@ -56,6 +62,7 @@ function loadingMsg (title, mask) {
     mask: defaultIfEmpty(mask, true)
   })
 }
+
 function formatString (source, params) {
   if (isEmpty(params) || params.length == 0) {
     return source

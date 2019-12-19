@@ -11,10 +11,30 @@ import './app.scss'
 //   require('nerv-devtools')
 // } 
 
+function formatString (source, params) {
+  if (params == null || params.length == 0) {
+    return source
+  } else if (typeof params === 'string') {
+    // params = params.trim().substr(1, params.length - 1)
+    params = Array.of(params.trim())
+    console.log(params)
+  } else if (typeof params == 'array') {
+    params.forEach(function (n, i) {
+      source = source.replace(new RegExp("\\[" + i + "\\]", "g"), function () {
+        return n
+      })
+    })
+  } else {
+    throw new Error("请输入[1]、[1,2]的格式字符或者数组")
+  }
+}
+
 class App extends Component {
 
   componentDidMount () {
+    console.log("h", formatString('请输入长度在[0] 到 [1] 之间的字符！', "  [1  , 2 ]   "))
   }
+
   config = {
     pages: [
       'pages/index/index', //首页 展示照片-介绍小程序作用

@@ -21,19 +21,19 @@ export default class Index extends Component {
       setTimeout(() => {
         // 去搜全页面
         Taro.switchTab({
-          url:'/pages/home/home'
+          url: '/pages/home/home'
         })
       }, 1000);
     }
   }
-  xxx(){
+  xxx () {
     var xx = new Vv()
-    console.log("xx",xx)
+    console.log("xx", xx)
   }
 
-  componentWillMount () {}
+  componentWillMount () { }
 
-  componentDidMount () {}
+  componentDidMount () { }
 
   componentWillUnmount () { }
 
@@ -75,7 +75,8 @@ export default class Index extends Component {
             </View>
           </SwiperItem>
         </Swiper>
-        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd'/>
+        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd' />
+        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email[0,2]' type='text' placeholder='asd' />
         <AtButton onClick={this.xxx.bind(this)}>anniu</AtButton>
       </View>
     )

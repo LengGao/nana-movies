@@ -27,7 +27,7 @@ class WxValidate {
       properties: ['name', 'validate', 'fieldname'],
       context: true
     }, function (res) {
-      console.log("fields", res,res.context)
+      console.log("fields", res, res.context)
     }).exec(function (res) {
       console.log("exec", res)
       const arr = res[0];
@@ -59,10 +59,13 @@ class WxValidate {
       util.alert('提示1', str)
       return false;
     }
+    console.log("validate", validate)
     const arr = validate.split("|");
+    console.log("arr", arr)
     for (var i in arr) {
       let validateKey = util.trim(arr[i]);
       let s = validateKey;
+      console.log("validateKey", validateKey)
       let value = true;
       let m = validateKey.indexOf("[");
       m = m < 0 ? validateKey.indexOf("(") : m;
