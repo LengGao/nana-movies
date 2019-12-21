@@ -1,5 +1,7 @@
 import Taro from '@tarojs/taro'
 
+const BASE_URL = '127.0.0.1'
+const BASE_IMAGE_URL = '127.0.0.1'
 const requst = require('./request.js')
 /**
  可以使用拦截器在请求发出前或发出后做一些额外操作。
@@ -11,10 +13,16 @@ const requst = require('./request.js')
 const interceptor = function (chain) {
   const requestParams = chain.requestParams
   const { method, data, url } = requestParams
+  url = BASE_URL + url
   data.token = 'token'
+  Taro.showLoading({
+    title: '执行中...',
+    mask: true
+  })
   console.log(`http ${method || 'GET'} --> ${url} data: `, data)
   return chain.proceed(requestParams)
     .then(res => {
+      Taro.hideLoading()
       console.log(`http <-- ${url} result:`, res)
       return res
     })
