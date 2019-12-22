@@ -1,0 +1,49 @@
+.swper{
+    height: 480px;
+    SwiperItem {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .demo-text {
+        width: 100%;
+        height: 100%;
+
+        .showImge {
+            width: 100%;
+        }
+    }   
+}
+
+// tabs
+.content-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+
+    .cover{
+        width: 200px;
+        height: 100%;
+
+        Image {
+            width: 200px;
+            height: 200px;
+        }
+    } 
+
+    .describe {
+        display:     flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 550px;
+        margin: auto 10px;
+        
+        Text {
+            line-height: 45px;
+            vertical-align: middle;
+        }
+    }
+}

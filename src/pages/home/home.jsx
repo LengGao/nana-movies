@@ -1,104 +1,219 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input, Image, Swiper, SwiperItem } from '@tarojs/components'
-import { AtNoticebar, AtTabs, AtTabsPane, AtPagination, AtInput, AtButton } from 'taro-ui'
+import { View, Text, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { AtNoticebar, AtTabs, AtTabsPane, AtPagination } from 'taro-ui'
 import log from '../../static/img/default.jpg'
-import Vv from '../../validator/WxValidate'
+import toast from '../../utils/index'
 import './home.scss'
 
 export default class Home extends Component {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '娜微原创影视'
   }
   constructor() {
     super(...arguments)
     this.state = {
+      //通告文本
+      noticeB1arText: "这是 NoticeB1ar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏",
+      // tabBar 当前所处index
       current: 0,
-    }
-  }
+      // 轮播图链表 link = '广告链接'，上传时间
+      swiperList: [
+        { id: '', imageUrl: '', link: '', upDate: '', },
+      ],
+      // 人气作评数据
+      Popularitys:{
+        defalut: {
+          category:'',
+          list:[{
+            id:'',type:'',workName:'',overLink:'',workLink:'',author:'',from:'',pulishDate:''
+          }]
+        }
+      },
+      // 新秀作品数据
+      NewProducts:{
+        default:{
+          category:'',
+        },
+        list:[{
+          id:'',type:'',workName:'',coverLink:'',workLink:'',author:'',from:'',pulishDate:''
+        }]
+      },
+      // 预告作品数据
+      Notices:{
+        defalut: {
+          category:'',
+          list:[{
+            id:'',type:'',workName:'',overLink:'',workLink:'',author:'',from:'',pulishDate:''
+          }]
+        } 
+      }
 
-  handlerChange (e) {
+    }
+    this.offset = 0;
+    this.pageSize = 10;
+    this.total = 0;
+  }
+  // swiper
+  handlerChange(e) {
+    console.log("x", e.detail.current)
+  }
+  handleSwiperItem(e){
+    console.log("handleSwiperItem",e)
   }
   // noticebar
-  handlerNoticebar () {
+  handlerNoticebar() {
   }
-  handlerGotoMore () {
+  handlerGotoMore() {
+    console.log("handlerGotoMore")
   }
   // tabs
-  handleClick (value) {
+  handleClick(value) {
     this.setState({
       current: value
     })
   }
   // pagechage
-  handlerPageChange (e) {
-    console.log("e", e)
+  handlerPageChange(e) {
+    this.offset = e.current
   }
 
-  xxx () {
-    var xx = new Vv()
-    console.log("xx", xx)
+  // 数据初始化
+  initData() {
+  }
+  // 数据获取
+  getData() {
   }
 
 
-  componentWillMount () { }
+  // 分页数据初始化
+  initPage() {
+    this.offset = 0;
+    this.pageSize = 10;
+    this.total = 0;
+  }
 
-  componentDidMount () { }
+  //上拉加载
+  onReachBottom() {
+    if ((this.offset * this.pageSize) < this.total) {
+      this.pageSize = this.pageSize + 10
+      this.getData();
+    } else {
+      toast.success_Short("到底了请翻页")
+    }
+  }
 
-  componentWillUnmount () { }
+  componentWillMount() { }
 
-  componentDidShow () { }
+  componentDidMount() { }
 
-  componentDidHide () { }
+  componentWillUnmount() { }
 
-  render () {
+  componentDidShow() { }
+
+  componentDidHide() { }
+
+  // SwperItem 函数组件
+  SwiperItem () {
+    return (
+        <SwiperItem>
+        <View className='demo-text'>
+          <Image class='showImge' src={log} onClick={this.handleSwiperItem.bind(this)} />
+        </View>
+      </SwiperItem>
+    )
+  }
+
+  // 函数组件 tab AtTabsPane
+  AtTabsPaneOne() {
+    return (
+      <View style='background-color: #FAFBFC;' title='标签页一的内容'>
+        <View className='content-box'>
+          <View className='cover'>
+            <Image src={log} mode='aspectFill' />
+          </View>
+          <View className='describe'>
+            <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+            <View className='author'><Text className='at-article__p'>作者：</Text></View>
+            <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+            <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+          </View>
+        </View>
+        {/* 间隔元素 */}
+        <View style='height:1px;'></View>
+      </View>
+    )
+  }
+  AtTabsPaneTow(){
+    return(
+      <View style='background-color: #FAFBFC;' title='标签页一的内容'>
+      <View className='content-box'>
+        <View className='cover'>
+          <Image src={log} mode='aspectFill' />
+        </View>
+        <View className='describe'>
+          <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+          <View className='author'><Text className='at-article__p'>作者：</Text></View>
+          <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+          <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+        </View>
+      </View>
+       {/* 间隔元素 */}
+      <View style='height:1px;'></View>
+    </View>
+    )
+  }
+  AtTabsPaneThird(){
+    return(
+      <View style='background-color: #FAFBFC;' title='标签页一的内容'>
+      <View className='content-box'>
+        <View className='cover'>
+          <Image src={log} mode='aspectFill' />
+        </View>
+        <View className='describe'>
+          <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+          <View className='author'><Text className='at-article__p'>作者：</Text></View>
+          <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+          <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+        </View>
+      </View>
+       {/* 间隔元素 */}
+      <View style='height:1px;'></View>
+    </View>
+    )
+  }
+
+
+  render() {
     const tabList = [{ title: '人气' }, { title: '新秀' }, { title: '预告' }]
     return (
       <View className='index'>
-        <AtNoticebar marquee onClose={this.handlerNoticebar.bind(this)}
+        <AtNoticebar marquee showMore moreText='查看跟多' onClose={this.handlerNoticebar.bind(this)}
           onGotoMore={this.handlerGotoMore.bind(this)}>
-          这是 NoticeB1ar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+          <Text onClick={this.handlerGotoMore.bind(this)}>{this.state.noticeB1arText}</Text>
         </AtNoticebar>
         <Swiper
-          className='test-h'
+          className='swper'
           indicatorColor='#999'
           indicatorActiveColor='#333'
           circular
           indicatorDots
-          autoplay={false}
-          onChange={this.handlerChange.bind(this)}
+          autoplay
         >
-          <SwiperItem>
-            <View className='demo-text'>
-              <Image class='showImge' src={log} mode='aspectFit' />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text'>
-              <Image class='showImge' src={log} mode='aspectFit' />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text'>
-              <Image class='showImge' src={log} mode='aspectFit' />
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text lastItem'>
-              <Image class='showImge' src={log} mode='aspectFit' style=' height: 80%;' />
-              <Text style='margin-left: 4%;'>宝贝~您来啦！</Text>
-            </View>
-          </SwiperItem>
+          {this.SwiperItem()}
         </Swiper>
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
           <AtTabsPane current={this.state.current} index={0} >
-            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;' >标签页一的内容</View>
+            <View className='at-article__h1' style=" text-align: center;"><Text>搞笑</Text></View>
+            {this.AtTabsPaneOne()}
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
-            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页二的内容</View>
+            <View className='at-article__h1' style=" text-align: center;"><Text>搞笑</Text></View>
+            {this.AtTabsPaneTow()}
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={2}>
-            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页三的内容</View>
+            <View className='at-article__h1' style=" text-align: center;"><Text>搞笑</Text></View>
+            {this.AtTabsPaneThird()}
           </AtTabsPane>
         </AtTabs>
         <AtPagination
@@ -109,9 +224,6 @@ export default class Home extends Component {
           onPageChange={this.handlerPageChange.bind(this)}
         >
         </AtPagination>
-        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd' />
-        <AtInput data-name='validate' id='validate' className='wxvalidate' data-validate='email' type='text' placeholder='asd' />
-        <AtButton onClick={this.xxx.bind(this)}>anniu</AtButton>
       </View>
     )
   }
