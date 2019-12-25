@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
+import { AtPagination } from 'taro-ui'
 import { navigate } from '../../utils/index'
 import './movieshow.scss'
 
@@ -106,6 +107,9 @@ export default class Movieshow extends Component {
               </View>);
           })
         }
+        <View className='pagination'>
+        <AtPagination icon current={1} pageSize={10}  total={50} ></AtPagination>
+        </View>
       </View>
     )
   }
