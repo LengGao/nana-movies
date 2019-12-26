@@ -1,0 +1,48 @@
+.index{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.video-component{
+  width: 100%;
+  height: 640px;
+}
+
+// 弹幕
+.danmu-box {
+  margin: 20px 0 100px;
+
+  .danmu-input {
+    border: 2px solid gray;
+  }
+
+  .danmu-button {
+    width: 80%;
+    margin-top: 20px;
+  }
+}
+  
+// 作者信息
+.author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+
+  Image {
+      width: 3.125rem;
+      height: 100px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin: 10px autp;
+  }
+}
+
+//作业寄语
+.author-message{
+margin-top: 20px;
+}

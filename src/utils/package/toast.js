@@ -2,14 +2,14 @@ import Taro from '@tarojs/taro'
 
 // 提示
 const toast = {
-  success_Long(title = "成功") {
+  success_Long (title = "成功") {
     return Taro.showToast({
       title: title,
       icon: 'success',
       duration: 2000
     })
   },
-  success_Short(title = "成功") {
+  success_Short (title = "成功") {
     return Taro.showToast({
       title: title,
       icon: 'success',
@@ -17,21 +17,21 @@ const toast = {
     })
   },
 
-  loading(title = "加载中...", duration = 2000) {
+  loading (title = "加载中...", duration = 2000) {
     return Taro.showToast({
       title: title,
       icon: 'loading',
       duration: duration
     })
   },
-  error_Long(title = "失败") {
+  error_Long (title = "失败") {
     return Taro.showToast({
       title: title,
       icon: 'loading',
       duration: 2000
     })
   },
-  error_Short(title = "失败") {
+  error_Short (title = "失败") {
     return Taro.showToast({
       title: title,
       icon: 'loading',
@@ -39,19 +39,19 @@ const toast = {
     })
   },
 
-  common_Long(title) {
+  common_Long (title) {
     return Taro.showToast({
       title: title,
       duration: 1000
     })
   },
-  common_Short(title) {
+  common_Short (title) {
     return Taro.showToast({
       title: title,
       duration: 1000
     })
   },
-  showModal_Determine(title = '娜娜提示您', content = "请确认操作", showCancel = false, cancelText = '取消', cancelColor = '#000000', confirmText = '确定', confirmColor = '#3CC51F') {
+  showModal_Determine (title = '娜娜提示您', content = "请确认操作", showCancel = false, cancelText = '取消', cancelColor = '#000000', confirmText = '确定', confirmColor = '#3CC51F') {
     return Taro.showModal({
       title,
       content,
@@ -63,7 +63,7 @@ const toast = {
     })
       .then(res => console.log(res.confirm, res.cancel))
   },
-  showModal_Confirm(title = '娜娜提示您', content = "确认执行该操作吗?", showCancel = false, cancelText = '取消', cancelColor = '#000000', confirmText = '确定', confirmColor = '#3CC51F') {
+  showModal_Confirm (title = '娜娜提示您', content = "确认执行该操作吗?", showCancel = false, cancelText = '取消', cancelColor = '#000000', confirmText = '确定', confirmColor = '#3CC51F') {
     return Taro.showModal({
       title,
       content,
@@ -75,7 +75,7 @@ const toast = {
     })
       .then(res => console.log(res.confirm, res.cancel))
   },
-  showActionSheet(itemList = [], itemColor = '#000000', callback) {
+  showActionSheet (itemList = [], itemColor = '#000000', callback) {
     let a = 0;
     return Taro.showActionSheet({
       itemList,
@@ -91,7 +91,21 @@ const toast = {
       })
       .catch(err => console.log(err))
     return a;
+  },
+  /**
+   * 
+   * @param {*} message String 必填 提示信息
+   * @param {*} type String 	info，success，error，warnin
+   * @param {*} duration number 持续时间
+   */
+  showMessage (message = '系统提示', type = 'info', duration = '') {
+    return Taro.atMessage({
+      message: message,
+      type: type,
+      duration: duration
+    })
   }
+
 }
 
 

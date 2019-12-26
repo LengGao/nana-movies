@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { AtIcon, AtList, AtListItem } from 'taro-ui'
+import { AtTextarea, AtList, AtListItem, AtActionSheet, AtActionSheetItem, AtButton } from 'taro-ui'
 import log from '../../static/img/default.jpg'
 import './selfspace.scss'
 
@@ -19,6 +19,10 @@ export default class Selfspace extends Component {
         userName: 'nana',
         userRang: '中国'
       },
+      isOpened: false,
+      isOpened2: false,
+      isOpened3: false,
+      value: ''
     }
   }
   // 图片加载失败
@@ -44,10 +48,20 @@ export default class Selfspace extends Component {
     return false
   }
 
-  componentWillMount () {
-    Taro.redirectTo({
-      url: `/pages/login/login?message=0`
+  handleChange (e) {
+    this.setState({
+      value: e.target.value
     })
+  }
+  // 提交按钮
+  handlerSubmit () {
+
+  }
+
+  componentWillMount () {
+    // Taro.redirectTo({
+    //   url: `/pages/login/login?message=0`
+    // })
   }
   componentDidMount () { }
 
@@ -61,9 +75,9 @@ export default class Selfspace extends Component {
     return (
       <View className='index'>
         <View className='page-header'>
-          <View className='setting'>
+          {/*<View className='setting'>
             <AtIcon value='settings' size='30' color='#F00' onClick={this.handlerSetting.bind(this)}></AtIcon>
-          </View>
+          </View>*/}
           <Image src={log ? log : ''} onError={this.handleError.bind(this)} mode='aspectFit' className='user-head' />
           <View className='user-info'>
             <View className='nickname'><Text>昵称:</Text><Text>昵称:    {this.state.userInfo.userName}</Text></View>
@@ -74,14 +88,22 @@ export default class Selfspace extends Component {
         <View className='container'>
           <AtList>
             <AtListItem
-              title='标题文字'
+              title='投稿'
+              note='描述信息'
+              extraText='详细信息'
+              arrow='right'
+              iconInfo={{ size: 25, color: '#FF4949', value: 'bookmark', }}
+              onClick={this.handlerList.bind(this, 1)}
+            />
+            <AtListItem
+              title='反馈'
               note='描述信息'
               arrow='right'
               iconInfo={{ size: 25, color: '#78A4FA', value: 'calendar', }}
               onClick={this.handlerList.bind(this, 0)}
             />
             <AtListItem
-              title='标题文字'
+              title='关于'
               note='描述信息'
               extraText='详细信息'
               arrow='right'
@@ -90,6 +112,30 @@ export default class Selfspace extends Component {
             />
           </AtList>
         </View>
+        <AtActionSheet isOpened cancelText='取消' title='头部标题可以用通过转义字符换行'>
+          <AtActionSheetItem>
+            <View><Text>投稿微信图 <Image src={log} /></Text></View>
+          </AtActionSheetItem>
+        </AtActionSheet>
+
+        <AtActionSheet>
+          <AtActionSheetItem>
+            <View>
+              <AtTextarea type='text' placeholder='欢迎反馈您的宝贵意见' value={this.state.value}
+                onChange={this.handleChange.bind(this)}
+                maxLength={200}
+              />
+              <AtButton type='primary' onClick={this.handlerSubmit.bind(this)}>
+                <Text>提交</Text>
+              </AtButton>
+            </View>
+          </AtActionSheetItem>
+        </AtActionSheet>
+        <AtActionSheet>
+          <AtActionSheetItem>
+            <View><Text>这是关于信息</Text></View>
+          </AtActionSheetItem>
+        </AtActionSheet>
       </View>
     )
   }

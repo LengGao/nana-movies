@@ -19,15 +19,15 @@ class App extends Component {
 
   config = {
     pages: [
-      // 'pages/index/index', //首页 展示照片-介绍小程序作用
-      'pages/movieshow/movieshow',// 电影展示页码,
+      'pages/index/index', //首页 展示照片-介绍小程序作用
       'pages/home/home',//影评- 新品 - 人气
-      'pages/photoshow/photoshow',//照片展示页
+      'pages/photoshow/photoshow',//照片展示页  
+      'pages/movieshow/movieshow',// 电影展示页码,
       'pages/movieshow/movieDetail', // 电影详情 播放
       'pages/selfspace/selfspace',//个人中心
-      'pages/selfspace/setting',// 个人信息编辑
-      'pages/login/login',//授权登录
+      // 'pages/selfspace/setting',// 个人信息编辑
       'pages/login/authorization', // 微信授权登录
+      // 'pages/login/login',//登录
     ],
     window: {
       backgroundTextStyle: 'light',

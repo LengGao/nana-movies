@@ -40,8 +40,9 @@ export default class Authorization extends Component {
   render () {
     return (
       <View className='index'>
-        <Image src={log} />
-        <Button type='primary' open-type='getUserInfo' onGetUserInfo={this.handleGetUserInfo.bind(this)}>
+        <Image src={log} className='applog' />
+        <Text className='.at-article__h2'>一个专为原创作者设计的平台</Text>
+        <Button type='primary' className='login' open-type='getUserInfo' onGetUserInfo={this.handleGetUserInfo.bind(this)}>
           <Text>微信授权登录</Text>
         </Button>
       </View>
