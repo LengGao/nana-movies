@@ -22,31 +22,31 @@ export default class Home extends Component {
         { id: '', imageUrl: '', link: '', upDate: '', },
       ],
       // 人气作评数据
-      Popularitys:{
+      Popularitys: {
         defalut: {
-          category:'',
-          list:[{
-            id:'',type:'',workName:'',overLink:'',workLink:'',author:'',from:'',pulishDate:''
+          category: '',
+          list: [{
+            id: '', type: '', workName: '', overLink: '', workLink: '', author: '', from: '', pulishDate: ''
           }]
         }
       },
       // 新秀作品数据
-      NewProducts:{
-        default:{
-          category:'',
+      NewProducts: {
+        default: {
+          category: '',
         },
-        list:[{
-          id:'',type:'',workName:'',coverLink:'',workLink:'',author:'',from:'',pulishDate:''
+        list: [{
+          id: '', type: '', workName: '', coverLink: '', workLink: '', author: '', from: '', pulishDate: ''
         }]
       },
       // 预告作品数据
-      Notices:{
+      Notices: {
         defalut: {
-          category:'',
-          list:[{
-            id:'',type:'',workName:'',overLink:'',workLink:'',author:'',from:'',pulishDate:''
+          category: '',
+          list: [{
+            id: '', type: '', workName: '', overLink: '', workLink: '', author: '', from: '', pulishDate: ''
           }]
-        } 
+        }
       }
 
     }
@@ -55,46 +55,46 @@ export default class Home extends Component {
     this.total = 0;
   }
   // swiper
-  handlerChange(e) {
+  handlerChange (e) {
     console.log("x", e.detail.current)
   }
-  handleSwiperItem(e){
-    console.log("handleSwiperItem",e)
+  handleSwiperItem (e) {
+    console.log("handleSwiperItem", e)
   }
   // noticebar
-  handlerNoticebar() {
+  handlerNoticebar () {
   }
-  handlerGotoMore() {
+  handlerGotoMore () {
     console.log("handlerGotoMore")
   }
   // tabs
-  handleClick(value) {
+  handleClick (value) {
     this.setState({
       current: value
     })
   }
   // pagechage
-  handlerPageChange(e) {
+  handlerPageChange (e) {
     this.offset = e.current
   }
 
   // 数据初始化
-  initData() {
+  initData () {
   }
   // 数据获取
-  getData() {
+  getData () {
   }
 
 
   // 分页数据初始化
-  initPage() {
+  initPage () {
     this.offset = 0;
     this.pageSize = 10;
     this.total = 0;
   }
 
   //上拉加载
-  onReachBottom() {
+  onReachBottom () {
     if ((this.offset * this.pageSize) < this.total) {
       this.pageSize = this.pageSize + 10
       this.getData();
@@ -103,20 +103,20 @@ export default class Home extends Component {
     }
   }
 
-  componentWillMount() { }
+  componentWillMount () { }
 
-  componentDidMount() { }
+  componentDidMount () { }
 
-  componentWillUnmount() { }
+  componentWillUnmount () { }
 
-  componentDidShow() { }
+  componentDidShow () { }
 
-  componentDidHide() { }
+  componentDidHide () { }
 
   // SwperItem 函数组件
   SwiperItem () {
     return (
-        <SwiperItem>
+      <SwiperItem>
         <View className='demo-text'>
           <Image class='showImge' src={log} onClick={this.handleSwiperItem.bind(this)} />
         </View>
@@ -125,7 +125,7 @@ export default class Home extends Component {
   }
 
   // 函数组件 tab AtTabsPane
-  AtTabsPaneOne() {
+  AtTabsPaneOne () {
     return (
       <View style='background-color: #FAFBFC;' title='标签页一的内容'>
         <View className='content-box'>
@@ -144,47 +144,47 @@ export default class Home extends Component {
       </View>
     )
   }
-  AtTabsPaneTow(){
-    return(
+  AtTabsPaneTow () {
+    return (
       <View style='background-color: #FAFBFC;' title='标签页一的内容'>
-      <View className='content-box'>
-        <View className='cover'>
-          <Image src={log} mode='aspectFill' />
+        <View className='content-box'>
+          <View className='cover'>
+            <Image src={log} mode='aspectFill' />
+          </View>
+          <View className='describe'>
+            <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+            <View className='author'><Text className='at-article__p'>作者：</Text></View>
+            <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+            <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+          </View>
         </View>
-        <View className='describe'>
-          <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
-          <View className='author'><Text className='at-article__p'>作者：</Text></View>
-          <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
-          <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
-        </View>
+        {/* 间隔元素 */}
+        <View style='height:1px;'></View>
       </View>
-       {/* 间隔元素 */}
-      <View style='height:1px;'></View>
-    </View>
     )
   }
-  AtTabsPaneThird(){
-    return(
+  AtTabsPaneThird () {
+    return (
       <View style='background-color: #FAFBFC;' title='标签页一的内容'>
-      <View className='content-box'>
-        <View className='cover'>
-          <Image src={log} mode='aspectFill' />
+        <View className='content-box'>
+          <View className='cover'>
+            <Image src={log} mode='aspectFill' />
+          </View>
+          <View className='describe'>
+            <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+            <View className='author'><Text className='at-article__p'>作者：</Text></View>
+            <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+            <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+          </View>
         </View>
-        <View className='describe'>
-          <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
-          <View className='author'><Text className='at-article__p'>作者：</Text></View>
-          <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
-          <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
-        </View>
+        {/* 间隔元素 */}
+        <View style='height:1px;'></View>
       </View>
-       {/* 间隔元素 */}
-      <View style='height:1px;'></View>
-    </View>
     )
   }
 
 
-  render() {
+  render () {
     const tabList = [{ title: '人气' }, { title: '新秀' }, { title: '预告' }]
     return (
       <View className='index'>

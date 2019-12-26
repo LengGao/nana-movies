@@ -10,25 +10,38 @@
 .itemBox {
     display: flex;
     flex-direction: column;
+    margin: 20px auto;
 
     Image {
         width: 10.625rem;
+        height: 12.8rem;
+        border: 2px solid gray;
     }
+    //作者信息
+    .author {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100px;
+      margin-top: 10px;
+  
+      Image {
+          width: 110px;
+          height: 100px;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        margin: 0.625rem;
+    }
+  }
 }
 
-
-.author {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    Image {
-        width: 3.125rem;
-    }
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-    margin: 0.625rem;
+// 分页器
+.pagination{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
