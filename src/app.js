@@ -20,9 +20,9 @@ class App extends Component {
   config = {
     pages: [
       // 'pages/index/index', //首页 展示照片-介绍小程序作用
-      'pages/photoshow/photoshow',//照片展示页
-      'pages/home/home',//影评- 新品 - 人气
       'pages/movieshow/movieshow',// 电影展示页码,
+      'pages/home/home',//影评- 新品 - 人气
+      'pages/photoshow/photoshow',//照片展示页
       'pages/movieshow/movieDetail', // 电影详情 播放
       'pages/selfspace/selfspace',//个人中心
       'pages/selfspace/setting',// 个人信息编辑

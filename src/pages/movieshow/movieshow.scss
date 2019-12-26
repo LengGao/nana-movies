@@ -4,31 +4,46 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0.625rem;
+    padding: 10px;
 }
 
 .itemBox {
     display: flex;
     flex-direction: column;
+    margin: 10px;
 
     Image {
-        width: 10.625rem;
+        width: 340px;
+        height: 480px;
+        border: 2px solid gray;
+    }
+    // 作者信息
+    .author {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 10px;
+    
+        Image {
+            width: 3.125rem;
+            height: 100px;
+        }
+    }
+    
+    .info {
+        display: flex;
+        flex-direction: column;
+        margin: 10px autp;
     }
 }
 
-
-.author {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    Image {
-        width: 3.125rem;
-    }
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-    margin: 0.625rem;
+.pagination{
+    display: block;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+    // display: flex;
+    // flex-direction: row;
+    // justify-items: center;
 }
