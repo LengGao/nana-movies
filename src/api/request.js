@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-
+import utils from '../utils/index' 
 /**
  * https://taro-docs.jd.com/taro/docs/apis/network/request/request.html
  * @param {*} method 
@@ -45,7 +45,7 @@ if (process.env.TARO_ENV === 'h5') {
     }
   }
 } else {
-  GET_CONFIG = function (method = 'GET', header = { 'content-type': 'application/json' }, dataType = 'json', responseType = 'text') {
+  GET_CONFIG = function (method = 'GET', header = { 'content-type': 'application/json;charset=utf-8' }, dataType = 'json', responseType = 'text') {
     return {
       method,
       header,
@@ -54,7 +54,7 @@ if (process.env.TARO_ENV === 'h5') {
       responseType
     }
   }
-  POST_CONFIG = function (method = 'POST', header = { 'content-type': 'application/json' }, dataType = 'json', responseType = 'text') {
+  POST_CONFIG = function (method = 'POST', header = { 'content-type': 'application/json;charset=utf-8' }, dataType = 'json', responseType = 'text') {
     return {
       method,
       header,
@@ -69,19 +69,55 @@ if (process.env.TARO_ENV === 'h5') {
 const get_config = GET_CONFIG();
 const post_config = POST_CONFIG();
 
-console.log('GET_CONFIG :', get_config);
-console.log('GET_CONFIG :', demo);
+// console.log('GET_CONFIG :', get_config);
+// console.log('GET_CONFIG :', demo);
 // 请求 填写url + data 最后戴上相关配置
 
-export function demo (url, data) {
+// home
+export function swiperList(url,data) {
+  return  Taro.request({
+    url,
+    data,
+    ...get_config
+  })
+}
+export function noticeB1arText(url,data) {
   return Taro.request({
     url,
     data,
-    ...post_config
+    ...get_config
   })
 }
-
-export function demo2 (url, data) {
+/**
+ * 人气
+ * @param {*} url 
+ * @param {*} data  {type,offset,pageSize,total} 
+ */
+export function popularitysList(url,data) {
+  return Taro.request({
+    url,
+    data,
+    ...get_config
+  })
+}
+/**
+ * 新品
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function newProductsList(url,data) {
+ return Taro.request({
+   url,
+   data,
+   ...get_config
+ }) 
+}
+/**
+ * 预告
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function noticesList(url,data) {
   return Taro.request({
     url,
     data,

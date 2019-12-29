@@ -1,11 +1,12 @@
+// 轮播
 .swper{
     height: 480px;
-    SwiperItem {
+    .swiper-item {
         width: 100%;
         height: 100%;
     }
     
-    .demo-text {
+    .swiper-content {
         width: 100%;
         height: 100%;
 
@@ -15,7 +16,7 @@
     }   
 }
 
-// tabs
+// tabs页
 .content-box {
     display: flex;
     flex-direction: row;

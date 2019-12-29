@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import log from '../../static/img/default.jpg'
+import log from '../../static/images/cover/default.jpg'
 import './authorization.scss'
 
 
@@ -13,10 +13,24 @@ export default class Authorization extends Component {
   constructor() {
     super(...arguments)
     this.state = {
-
+      /** 用户信息 */
+      userInfo: {
+        /** 昵称 */
+        nickName: 'zs',
+        /** 头像 */
+        avatarUrl: 'https://jdc.jd.com/img/200',
+        /** 性别 `0`: 未知 `1`: 男- `2`: 女  */
+        gender: 0 | 1 | 2,
+        /** 省份，如：`Yunnan` */
+        province: '湖南',
+        /** 城市，如：`Dalian` */
+        city: '耒阳',
+        /** 国家，如：`China` */
+        country: '中国',
+      },
     }
   }
-  handleGetUserInfo (e) {
+  handleGetUserInfo(e) {
     console.log('e', e)
     Taro.switchTab({
       url: '/pages/home/home'
@@ -24,20 +38,20 @@ export default class Authorization extends Component {
   }
 
 
-  componentWillMount () {
+  componentWillMount() {
     let currentPages = Taro.getCurrentPages()
     console.log('currentPages', currentPages)
   }
-  componentDidMount () {
+  componentDidMount() {
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() { }
 
-  componentDidShow () { }
+  componentDidShow() { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
-  render () {
+  render() {
     return (
       <View className='index'>
         <Image src={log} className='applog' />

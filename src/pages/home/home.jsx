@@ -1,9 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, request } from '@tarojs/taro'
 import { View, Text, Image, Swiper, SwiperItem } from '@tarojs/components'
 import { AtNoticebar, AtTabs, AtTabsPane, AtPagination } from 'taro-ui'
-import log from '../../static/img/default.jpg'
-import toast from '../../utils/index'
+import log from '../../static/images/cover/default.jpg'
+import {toast} from '../../utils/index'
 import './home.scss'
+import api from '../../api'
 
 export default class Home extends Component {
 
@@ -19,105 +20,129 @@ export default class Home extends Component {
       current: 0,
       // 轮播图链表 link = '广告链接'，上传时间
       swiperList: [
-        { id: '', imageUrl: '', link: '', upDate: '', },
+        { id: '', imageUrl: '../../static/images/cover/default.jpg', link: '', upDate: '', },
       ],
       // 人气作评数据
-      Popularitys: {
+      popularitys: {
         defalut: {
           category: '',
           list: [{
-            id: '', type: '', workName: '', overLink: '', workLink: '', author: '', from: '', pulishDate: ''
+            authorId: '', type: '', workName: '', coverLink: '', workLink: '', authorName: '', authorFrom: '', pulishDate: ''
           }]
         }
       },
       // 新秀作品数据
-      NewProducts: {
+      newProducts: {
         default: {
           category: '',
         },
         list: [{
-          id: '', type: '', workName: '', coverLink: '', workLink: '', author: '', from: '', pulishDate: ''
+          authorId: '', type: '', workName: '', coverLink: '', workLink: '', authorName: '', authorFrom: '', pulishDate: ''
         }]
       },
       // 预告作品数据
-      Notices: {
+      notices: {
         defalut: {
           category: '',
           list: [{
-            id: '', type: '', workName: '', overLink: '', workLink: '', author: '', from: '', pulishDate: ''
+            authorId: '', type: '', workName: '', coverLink: '', workLink: '', authorName: '', authorFrom: '', pulishDate: ''
           }]
         }
       }
 
     }
-    this.offset = 0;
-    this.pageSize = 10;
-    this.total = 0;
+    this.pageSize = 10
+    this.total = 0
+    this.currentPage = 1
+    this.offset =  (this.currentPage -1) * this.pageSize
   }
   // swiper
-  handlerChange (e) {
+  handlerChange(e) {
     console.log("x", e.detail.current)
   }
-  handleSwiperItem (e) {
+  handleSwiperItem(e) {
     console.log("handleSwiperItem", e)
   }
   // noticebar
-  handlerNoticebar () {
+  handlerNoticebar() {
   }
-  handlerGotoMore () {
+  handlerGotoMore() {
     console.log("handlerGotoMore")
   }
   // tabs
-  handleClick (value) {
+  handleClick(value) {
     this.setState({
       current: value
     })
   }
   // pagechage
-  handlerPageChange (e) {
+  handlerPageChange(e) {
     this.offset = e.current
   }
-
   // 数据初始化
-  initData () {
+  initData() {
+    api.noticeB1arText('all.json').then(res=>{
+      if(res.data){
+      this.setState({
+        noticeB1arText:''
+      })
+      }
+    })
+    api.swiperList('all.json').then(res=>{
+      if(res.data){
+      this.setState({
+        swiperList:[]
+      })
+    }
+    })
+    api.popularitysList('all.json').then(res=>{
+      this.setState({
+         popularitys:[]
+      })
+    })
+    api.newProductsList('all.josn').then(res=>{
+      this.setState({
+        newProducts:[]
+      })
+    })
+    api.noticesList('all.json').then(res=>{
+      this.setState({
+        noticesList:[]
+      })
+    })
   }
   // 数据获取
-  getData () {
+  getData() {
+    
   }
 
-
-  // 分页数据初始化
-  initPage () {
-    this.offset = 0;
-    this.pageSize = 10;
-    this.total = 0;
-  }
-
-  //上拉加载
-  onReachBottom () {
-    if ((this.offset * this.pageSize) < this.total) {
-      this.pageSize = this.pageSize + 10
+   //上拉加载 :start=(currentPage-1)*pageSize  totalPage = (total + pageSize - 1)/pageSize;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  onReachBottom() {
+    if ((this.offset + this.pageSize) < this.total) {
+      this.currentPage + 1
       this.getData();
     } else {
       toast.success_Short("到底了请翻页")
     }
   }
 
-  componentWillMount () { }
+  componentWillMount() {
+    return this.initData()
+    }
 
-  componentDidMount () { }
+  componentDidMount() { }
 
-  componentWillUnmount () { }
+  componentWillUnmount() { }
 
-  componentDidShow () { }
+  componentDidShow() { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
   // SwperItem 函数组件
-  SwiperItem () {
+  SwiperItem() {
     return (
-      <SwiperItem>
-        <View className='demo-text'>
+      <SwiperItem className='swiper-item'>
+        <View className='swiper-content'>
           <Image class='showImge' src={log} onClick={this.handleSwiperItem.bind(this)} />
         </View>
       </SwiperItem>
@@ -125,7 +150,7 @@ export default class Home extends Component {
   }
 
   // 函数组件 tab AtTabsPane
-  AtTabsPaneOne () {
+  AtTabsPaneOne() {
     return (
       <View style='background-color: #FAFBFC;' title='标签页一的内容'>
         <View className='content-box'>
@@ -144,7 +169,7 @@ export default class Home extends Component {
       </View>
     )
   }
-  AtTabsPaneTow () {
+  AtTabsPaneTow() {
     return (
       <View style='background-color: #FAFBFC;' title='标签页一的内容'>
         <View className='content-box'>
@@ -163,7 +188,7 @@ export default class Home extends Component {
       </View>
     )
   }
-  AtTabsPaneThird () {
+  AtTabsPaneThird() {
     return (
       <View style='background-color: #FAFBFC;' title='标签页一的内容'>
         <View className='content-box'>
@@ -184,7 +209,7 @@ export default class Home extends Component {
   }
 
 
-  render () {
+  render() {
     const tabList = [{ title: '人气' }, { title: '新秀' }, { title: '预告' }]
     return (
       <View className='index'>

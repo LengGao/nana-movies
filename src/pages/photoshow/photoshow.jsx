@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import { AtPagination } from 'taro-ui'
 import toast from '../../utils/index'
-import log from '../../static/img/default.jpg'
+import log from '../../static/images/cover/default.jpg'
 import './photoshow.scss'
 
 
@@ -16,53 +16,53 @@ export default class Photoshow extends Component {
     this.state = {
       ImageList: [
         {
-          authorName: '001',
+          authorId: '001',
           authorName: 'name',
           authorHeader: '../../static/img/default.jpg',
           authorFrom: '来自哪里',
-          authorWorks: '../../static/img/default.jpg',
+          workLink: '../../static/img/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         },
         {
-          authorName: '001',
+          authorId: '002',
           authorName: 'name',
           authorHeader: '../../static/img/default.jpg',
           authorFrom: '来自哪里',
-          authorWorks: '../../static/img/default.jpg',
+          workLink: '../../static/img/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         },
         {
-          authorName: '001',
+          authorId: '003',
           authorName: 'name',
           authorHeader: '../../static/img/default.jpg',
           authorFrom: '来自哪里',
-          authorWorks: '../../static/img/default.jpg',
+          workLink: '../../static/img/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         },
         {
-          authorName: '001',
+          authorId: '004',
           authorName: 'name',
           authorHeader: '../../static/img/default.jpg',
           authorFrom: '来自哪里',
-          authorWorks: '../../static/img/default.jpg',
+          workLink: '../../static/img/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         }
       ],
     }
-    this.offset = 0;
+    this.offset = 1;
     this.pageSize = 10;
     this.total = 0;
   }
 
-  handlerChange (e) {
+  handlerChange(e) {
     if (e.detail.current === 3) {
       setTimeout(() => {
         // 去搜全页面
@@ -73,25 +73,25 @@ export default class Photoshow extends Component {
 
   // 分页
   // 分页数据初始化
-  initPage () {
+  initPage() {
     this.offset = 0;
     this.pageSize = 10;
     this.total = 0;
   }
-  handlerPageChange (e) {
+  handlerPageChange(e) {
     this.offset = e.current
   }
 
-  init () {
+  initData() {
 
   }
 
-  getDate () {
+  getDate() {
 
   }
 
   //上拉加载
-  onReachBottom () {
+  onReachBottom() {
     if ((this.offset * this.pageSize) < this.total) {
       this.pageSize = this.pageSize + 10
       this.getData();
@@ -101,30 +101,32 @@ export default class Photoshow extends Component {
   }
 
 
-  componentWillMount () { }
+  componentWillMount() {
+    return this.initData()
+  }
 
-  componentDidMount () { }
+  componentDidMount() { }
 
-  componentWillUnmount () { }
+  componentWillUnmount() { }
 
-  componentDidShow () { }
+  componentDidShow() { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
-  render () {
+  render() {
 
     return (
       <View className='index'>
         {
           this.state.ImageList.map((item) => {
             return (
-              <View className='itemBox' taroKey={String(item.worksId)}>
-                <Image src={item.authorWorks} mode='aspectFit' />
+              <View className='itemBox' taroKey={String(item.authorId + item.worksId)}>
+                <Image src={item.workLink} mode='aspectFit' />
                 <View className='author'>
                   <Image src={item.authorHeader} mode='aspectFit' />
                   <View className='info'>
-                    <View className='name'>name</View>
-                    <View className='from'>from</View>
+                    <View className='name'><Text>{item.authorName}</Text></View>
+                    <View className='from'><Text>{item.authorFrom}</Text></View>
                   </View>
                 </View>
               </View>)
@@ -134,9 +136,9 @@ export default class Photoshow extends Component {
           <AtPagination
             className='pagination'
             icon
-            total={50}
-            pageSize={10}
-            current={1}
+            total={this.total}
+            pageSize={this.pageSize}
+            current={this.offset}
             onPageChange={this.handlerPageChange.bind(this)}
           >
           </AtPagination>

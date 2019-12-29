@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtForm, AtInput, AtButton } from 'taro-ui'
-import log from '../../static/img/default.jpg'
+import log from '../../static/images/cover/default.jpg'
 import './selfspace.scss'
 
 
