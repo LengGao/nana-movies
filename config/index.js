@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
   projectName: 'nana-movies',
   date: '2019-12-10',
@@ -31,6 +33,15 @@ const config = {
     ],
     options: {
     }
+  },
+  alias: {
+    '@/static': path.resolve(__dirname, '..', 'src/static'),
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@/validator': path.resolve(__dirname, '..', 'src/validator'),
+    '@/api': path.resolve(__dirname, '..', 'src/api'),
+    '@/package': path.resolve(__dirname, '..', 'package.json'),
+    '@/project': path.resolve(__dirname, '..', 'project.config.json'),
   },
   weapp: {
     module: {
