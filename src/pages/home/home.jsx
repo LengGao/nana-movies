@@ -113,10 +113,10 @@ export default class Home extends Component {
   }
   // 数据获取
   getData() {
-    
+
   }
 
-   //上拉加载 :start=(currentPage-1)*pageSize  totalPage = (total + pageSize - 1)/pageSize;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+   //上拉加载 :start=(currentPage-1)*pageSize  totalPage = (total + pageSize - 1)/pageSize;
   onReachBottom() {
     if ((this.offset + this.pageSize) < this.total) {
       this.currentPage + 1
@@ -139,74 +139,74 @@ export default class Home extends Component {
   componentDidHide() { }
 
   // SwperItem 函数组件
-  SwiperItem() {
-    return (
-      <SwiperItem className='swiper-item'>
-        <View className='swiper-content'>
-          <Image class='showImge' src={log} onClick={this.handleSwiperItem.bind(this)} />
-        </View>
-      </SwiperItem>
-    )
-  }
+  //  SwiperItem()props {
+  //   return (
+  //     <SwiperItem className='swiper-item'>
+  //       <View className='swiper-content'>
+  //         <Image class='showImge' src={log} onClick={this.handleSwiperItem.bind(this)} />
+  //       </View>
+  //     </SwiperItem>
+  //   );
+  // }
 
   // 函数组件 tab AtTabsPane
-  AtTabsPaneOne() {
-    return (
-      <View style='background-color: #FAFBFC;' title='标签页一的内容'>
-        <View className='content-box'>
-          <View className='cover'>
-            <Image src={log} mode='aspectFill' />
-          </View>
-          <View className='describe'>
-            <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
-            <View className='author'><Text className='at-article__p'>作者：</Text></View>
-            <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
-            <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
-          </View>
-        </View>
-        {/* 间隔元素 */}
-        <View style='height:1px;'></View>
-      </View>
-    )
-  }
-  AtTabsPaneTow() {
-    return (
-      <View style='background-color: #FAFBFC;' title='标签页一的内容'>
-        <View className='content-box'>
-          <View className='cover'>
-            <Image src={log} mode='aspectFill' />
-          </View>
-          <View className='describe'>
-            <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
-            <View className='author'><Text className='at-article__p'>作者：</Text></View>
-            <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
-            <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
-          </View>
-        </View>
-        {/* 间隔元素 */}
-        <View style='height:1px;'></View>
-      </View>
-    )
-  }
-  AtTabsPaneThird() {
-    return (
-      <View style='background-color: #FAFBFC;' title='标签页一的内容'>
-        <View className='content-box'>
-          <View className='cover'>
-            <Image src={log} mode='aspectFill' />
-          </View>
-          <View className='describe'>
-            <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
-            <View className='author'><Text className='at-article__p'>作者：</Text></View>
-            <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
-            <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
-          </View>
-        </View>
-        {/* 间隔元素 */}
-        <View style='height:1px;'></View>
-      </View>
-    )
-  }
+  //  AtTabsPaneOne(props) {
+  //   return (
+  //     <View style='background-color: #FAFBFC;' title='标签页一的内容'>
+  //       <View className='content-box'>
+  //         <View className='cover'>
+  //           <Image src={log} mode='aspectFill' />
+  //         </View>
+  //         <View className='describe'>
+  //           <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+  //           <View className='author'><Text className='at-article__p'>作者：</Text></View>
+  //           <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+  //           <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+  //         </View>
+  //       </View>
+  //       {/* 间隔元素 */}
+  //       <View style='height:1px;'></View>
+  //     </View>
+  //   );
+  // }
+  //  AtTabsPaneTow(props) {
+  //   return (
+  //     <View style='background-color: #FAFBFC;' title='标签页一的内容'>
+  //       <View className='content-box'>
+  //         <View className='cover'>
+  //           <Image src={log} mode='aspectFill' />
+  //         </View>
+  //         <View className='describe'>
+  //           <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+  //           <View className='author'><Text className='at-article__p'>作者：</Text></View>
+  //           <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+  //           <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+  //         </View>
+  //       </View>
+  //       {/* 间隔元素 */}
+  //       <View style='height:1px;'></View>
+  //     </View>
+  //   );
+  // }
+  //  AtTabsPaneThird(props) {
+  //   return (
+  //     <View style='background-color: #FAFBFC;' title='标签页一的内容'>
+  //       <View className='content-box'>
+  //         <View className='cover'>
+  //           <Image src={log} mode='aspectFill' />
+  //         </View>
+  //         <View className='describe'>
+  //           <View clas sName='work-name'><Text className='at-article__p'>作品名：</Text></View>
+  //           <View className='author'><Text className='at-article__p'>作者：</Text></View>
+  //           <View className='from'><Text className='at-article__p'>四川师范学院：</Text></View>
+  //           <View className='pulish-date'><Text className='at-article__p'>发布时间：</Text></View>
+  //         </View>
+  //       </View>
+  //       {/* 间隔元素 */}
+  //       <View style='height:1px;'></View>
+  //     </View>
+  //   );
+  // }
 
 
   render() {

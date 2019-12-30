@@ -30,7 +30,7 @@ export default class Authorization extends Component {
       },
     }
   }
-  handleGetUserInfo(e) {
+  handleGetUserInfo (e) {
     console.log('e', e)
     Taro.switchTab({
       url: '/pages/home/home'
@@ -38,20 +38,20 @@ export default class Authorization extends Component {
   }
 
 
-  componentWillMount() {
+  componentWillMount () {
     let currentPages = Taro.getCurrentPages()
     console.log('currentPages', currentPages)
   }
-  componentDidMount() {
+  componentDidMount () {
   }
 
-  componentWillUnmount() { }
+  componentWillUnmount () { }
 
-  componentDidShow() { }
+  componentDidShow () { }
 
-  componentDidHide() { }
+  componentDidHide () { }
 
-  render() {
+  render () {
     return (
       <View className='index'>
         <Image src={log} className='applog' />
