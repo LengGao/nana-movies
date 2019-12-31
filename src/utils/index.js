@@ -21,6 +21,6 @@ export { default as toast } from './package/toast'
 export { default as storage } from './package/storage'
 export { default as format } from './package/format'
 export { default as other } from './package/other'
-export { default as madia } from './package/media'
+export { default as media } from './package/media'
 
 export default Utils

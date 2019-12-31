@@ -12,7 +12,7 @@ demo = {
 // Home 首页
 this.state = {
     //通告文本
-    noticeB1arText: "这是 NoticeB1ar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏",
+    noticeB1arText: { id: '001', link: '', content: '这是 NoticeB1ar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通
     // tabBar 当前所处index
     current: 0,
     // 轮播图链表 link = '广告链接'，上传时间
@@ -26,9 +26,9 @@ this.state = {
         defalut: {
             category: '类别',
             list: [
-                {
-                    authorId: '', type: '', workName: '', coverLink: '', workLink: '', authorName: '', authorFrom: '', pulishDate: ''
-                }
+            {
+                authorId: '', type: '', worksId:'001', worksName: '', coverLink: '', worksLink: '', authorName: '', authorFrom: '', pulishDate: ''
+            }
             ]
         }
     },
@@ -39,7 +39,7 @@ this.state = {
         },
         list: [
             {
-                authorId: '', type: '', workName: '', coverLink: '', workLink: '', authorName: '', authorFrom: '', pulishDate: ''
+                authorId: '', type: '', worksId:'001', worksName: '', coverLink: '', worksLink: '', authorName: '', authorFrom: '', pulishDate: ''
             }
         ]
     },
@@ -48,9 +48,9 @@ this.state = {
         defalut: {
             category: '类别',
             list: [
-                {
-                    authorId: '', type: '', workName: '', coverLink: '', workLink: '', authorName: '', authorFrom: '', pulishDate: ''
-                }
+            {
+                authorId: '', type: '', worksId:'001', worksName: '', coverLink: '', worksLink: '', authorName: '', authorFrom: '', pulishDate: ''
+            }
             ]
         }
     }
@@ -64,14 +64,14 @@ Photoshow // 摄影作评
 this.state = {
     ImageList: [
         {
-            authorId: '001',
-            authorName: 'name',
-            authorHeader: '../../static/img/default.jpg',
-            authorFrom: '来自哪里',
-            workLink: '../../static/img/default.jpg',
-            worksId: '001',
-            worksType: 'photo',
-            publihTime: '2019-12-12'
+          authorId: '001',
+          authorName: 'name',
+          authorHeader: '../../static/img/default.jpg',
+          authorFrom: '来自哪里',
+          worksLink: '../../static/img/default.jpg',
+          worksId: '001',
+          worksType: 'photo',
+          publihTime: '2019-12-12'
         }
     ],
 }
@@ -83,16 +83,16 @@ this.total = 0;
 Movieshow // 影视列表
 this.state = {
     VidemoList: [
-        {
-            authorId: '001',
-            authorName: 'name',
-            authorHeader: '../../static/img/default.jpg',
-            authorFrom: '来自哪里',
-            worksId: '001',
-            coverLink: 'http: //misc.aotu.io/booxood/mobile-video/cover_900x500.jpg',
-            worksType: ' movie',
-            workLink: 'http: //wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-            publihTime: '2019-12-12'
+       {
+          authorId: '001',
+          authorName: 'name',
+          authorHeader: '../../static/img/default.jpg',
+          authorFrom: '来自哪里',
+          worksId: '001',
+          coverLink: 'http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg',
+          worksType: ' movie',
+          worksLink: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          publishTime: '2019-12-12'
         }
     ]
 }
@@ -109,7 +109,7 @@ this.state = {
         authorName: 'name',
         authorHeader: '../../static/img/default.jpg',
         authorFrom: '来自哪里',
-        workLink: 'http: //wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+        worksLink: 'http: //wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
         worksId: '001',
         coverLink: 'http: //misc.aotu.io/booxood/mobile-video/cover_900x500.jpg',
         worksType: ' movie',

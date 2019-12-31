@@ -1,15 +1,15 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { AtPagination } from 'taro-ui'
-import toast from '../../utils/index'
-import log from '../../static/images/cover/default.jpg'
+import { media, toast } from '../../utils/index'
 import './photoshow.scss'
+import api from '@/api/'
 
 
 export default class Photoshow extends Component {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+    enablePullDownRefresh: true
   }
   constructor() {
     super(...arguments)
@@ -18,82 +18,74 @@ export default class Photoshow extends Component {
         {
           authorId: '001',
           authorName: 'name',
-          authorHeader: '../../static/img/default.jpg',
+          authorHeader: '../../static/images/cover/default.jpg',
           authorFrom: '来自哪里',
-          workLink: '../../static/img/default.jpg',
+          worksLink: '../../static/images/cover/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         },
         {
-          authorId: '002',
+          authorId: '001',
           authorName: 'name',
-          authorHeader: '../../static/img/default.jpg',
+          authorHeader: '../../static/images/cover/default.jpg',
           authorFrom: '来自哪里',
-          workLink: '../../static/img/default.jpg',
+          worksLink: '../../static/images/cover/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         },
         {
-          authorId: '003',
+          authorId: '001',
           authorName: 'name',
-          authorHeader: '../../static/img/default.jpg',
+          authorHeader: '../../static/images/cover/default.jpg',
           authorFrom: '来自哪里',
-          workLink: '../../static/img/default.jpg',
+          worksLink: '../../static/images/cover/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
         },
         {
-          authorId: '004',
+          authorId: '001',
           authorName: 'name',
-          authorHeader: '../../static/img/default.jpg',
+          authorHeader: '../../static/images/cover/default.jpg',
           authorFrom: '来自哪里',
-          workLink: '../../static/img/default.jpg',
+          worksLink: '../../static/images/cover/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
-        }
+        },
       ],
     }
-    this.offset = 1;
-    this.pageSize = 10;
-    this.total = 0;
+    this.pageSize = 10
+    this.total = 1
+    this.currentPage = 1
+    this.offset = (this.currentPage - 1) * this.pageSize
   }
 
-  handlerChange(e) {
-    if (e.detail.current === 3) {
-      setTimeout(() => {
-        // 去搜全页面
-        console.log("start", e)
-      }, 1000);
-    }
+  previewImage (data) {
+    return media.previewImage(data)
   }
 
-  // 分页
-  // 分页数据初始化
-  initPage() {
-    this.offset = 0;
-    this.pageSize = 10;
-    this.total = 0;
-  }
-  handlerPageChange(e) {
-    this.offset = e.current
+
+  /**
+   * 初始化摄影作品数据
+   * @param {*} frequency 次数
+   */
+  initData () {
+    api.findPhotoList('all.json')
   }
 
-  initData() {
-
+  getDate () {
+  }
+  onPullDownRefresh () {
+    return this.initData()
   }
 
-  getDate() {
-
-  }
-
-  //上拉加载
-  onReachBottom() {
-    if ((this.offset * this.pageSize) < this.total) {
-      this.pageSize = this.pageSize + 10
+  //上拉加载 :start=(currentPage-1)*pageSize  totalPage = (total + pageSize - 1)/pageSize;
+  onReachBottom () {
+    if ((this.offset + this.pageSize) < this.total) {
+      this.currentPage + 1
       this.getData();
     } else {
       toast.success_Short("到底了请翻页")
@@ -101,19 +93,19 @@ export default class Photoshow extends Component {
   }
 
 
-  componentWillMount() {
+  componentWillMount () {
     return this.initData()
   }
 
-  componentDidMount() { }
+  componentDidMount () { }
 
-  componentWillUnmount() { }
+  componentWillUnmount () { }
 
-  componentDidShow() { }
+  componentDidShow () { }
 
-  componentDidHide() { }
+  componentDidHide () { }
 
-  render() {
+  render () {
 
     return (
       <View className='index'>
@@ -121,7 +113,7 @@ export default class Photoshow extends Component {
           this.state.ImageList.map((item) => {
             return (
               <View className='itemBox' taroKey={String(item.authorId + item.worksId)}>
-                <Image src={item.workLink} mode='aspectFit' />
+                <Image src={item.worksLink} mode='aspectFit' onClick={this.previewImage.bind(this, item.worksLink)} />
                 <View className='author'>
                   <Image src={item.authorHeader} mode='aspectFit' />
                   <View className='info'>
@@ -132,17 +124,6 @@ export default class Photoshow extends Component {
               </View>)
           })
         }
-        <View className='pagination'>
-          <AtPagination
-            className='pagination'
-            icon
-            total={this.total}
-            pageSize={this.pageSize}
-            current={this.offset}
-            onPageChange={this.handlerPageChange.bind(this)}
-          >
-          </AtPagination>
-        </View>
       </View>
     )
   }

@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Video } from '@tarojs/components'
 import { AtButton, AtInput, AtTextarea } from 'taro-ui'
-import log from '../../static/images/cover/default.jpg'
+import api from '@/api/'
 import './movieDetail.scss'
 
 
@@ -15,21 +15,21 @@ export default class MovieDetail extends Component {
     this.state = {
       // 视频
       VidemoDetail: {
-        authorName: '001',
-        authorName: 'name',
-        authorHeader: '../../static/img/default.jpg',
-        authorFrom: '来自哪里',
-        workLink: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+        authorId: '001',
+        authorName: '娜娜',
+        authorHeader: '../../static/images/cover/default.jpg',
+        authorFrom: '四川师范大学',
+        worksLink: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
         worksId: '001',
         coverLink: 'http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg',
         worksType: ' movie',
-        publihTime: '2019-12-12'
+        publishTime: '2019-12-12'
       },
       // 弹幕
       danmuList: [
-        { text: "cao", color: '#ff00ff', time: 3 },
-        { text: "cao", color: '#ff00ff', time: 3 },
-        { text: "cao", color: '#ff00ff', time: 3 }
+        { text: "1", color: '#ff00ff', time: 1 }, //time表示弹幕出现得秒数
+        { text: "2", color: '#ff00ff', time: 2 },
+        { text: "3", color: '#ff00ff', time: 3 }
       ],
       // 弹幕
       value: "",
@@ -38,13 +38,13 @@ export default class MovieDetail extends Component {
     }
   }
 
-  handleChange2(event) {
+  handleChange2 (event) {
     this.setState({
       value2: event.target.value
     })
   }
 
-  handleChange(value) {
+  handleChange (value) {
     this.setState({
       value
     })
@@ -52,23 +52,33 @@ export default class MovieDetail extends Component {
     return value
   }
   //发送弹幕
-  handlerPushDanmu() {
-    this.state.danmuList.push({ text: "gao", color: '#ff00ff', time: 3 })
-    console.log(this.state.danmuList)
+  handlerPushDanmu () {
+    let danmu = {
+      text: this.state.value
+    }
+    console.log(danmu)
+    api.saveDanmu('all.json', { id: 1, danmu: danmu })
   }
 
-  componentWillMount() {
+  ininData () {
+    api.findWorksDetail('all.json', { worksId: 1 })
+    api.findDanmuList('all.json', { worksId: 1 })
+    api.findAuthorMessage('all.json', { worksId: 1 })
   }
-  componentDidMount() {
+
+  componentWillMount () {
+    // return this.ininData()
   }
 
-  componentWillUnmount() { }
+  componentDidMount () { }
 
-  componentDidShow() { }
+  componentWillUnmount () { }
 
-  componentDidHide() { }
+  componentDidShow () { }
 
-  render() {
+  componentDidHide () { }
+
+  render () {
     return (
       <View className='index'>
         <Video
@@ -102,16 +112,15 @@ export default class MovieDetail extends Component {
           <AtButton className='danmu-button' type='primary' onClick={this.handlerPushDanmu.bind(this)}>添加弹幕</AtButton>
         </View>
         <View className='author'>
-          <Image src={this.state.VidemoDetail.workLink} mode='aspectFit' />
+          <Image src={this.state.VidemoDetail.authorHeader} mode='aspectFit' />
           <View className='info'>
-            <View className='name'><Text>{this.VidemoDetail.authorName}</Text></View>
-            <View className='from'><Text>{this.VidemoDetail.authorFrom}</Text></View>
+            <View className='name'><Text>作者：{this.state.VidemoDetail.authorName}</Text></View>
+            <View className='from'><Text>源自：{this.state.VidemoDetail.authorFrom}</Text></View>
           </View>
         </View>
         <View className='author-message'>
           <AtTextarea
-            value={this.state.valu2}
-            onChange={this.handleChange2.bind(this)}
+            value={this.state.authorMessage}
             maxLength={1000}
             disabled
             placeholder='暂无寄语'

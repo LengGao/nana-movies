@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import log from '../../static/images/cover/default.jpg'
 import './authorization.scss'
+import api from '@/api/'
 
 
 export default class Authorization extends Component {
@@ -31,6 +32,8 @@ export default class Authorization extends Component {
     }
   }
   handleGetUserInfo (e) {
+    // 使用此保存用户信息
+    // api.saveUserInfo()
     console.log('e', e)
     Taro.switchTab({
       url: '/pages/home/home'

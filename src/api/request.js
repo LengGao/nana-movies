@@ -1,5 +1,4 @@
 import Taro from '@tarojs/taro'
-import utils from '../utils/index' 
 /**
  * https://taro-docs.jd.com/taro/docs/apis/network/request/request.html
  * @param {*} method 
@@ -74,17 +73,17 @@ const post_config = POST_CONFIG();
 // 请求 填写url + data 最后戴上相关配置
 
 // home
-export function swiperList(url,data) {
-  return  Taro.request({
-    url,
-    data,
+export function findSwiperList (url, data) {
+  return Taro.request({
+    url: url,
+    data: data,
     ...get_config
   })
 }
-export function noticeB1arText(url,data) {
+export function findNoticeB1arText (url, data) {
   return Taro.request({
-    url,
-    data,
+    url: url,
+    data: data,
     ...get_config
   })
 }
@@ -93,10 +92,10 @@ export function noticeB1arText(url,data) {
  * @param {*} url 
  * @param {*} data  {type,offset,pageSize,total} 
  */
-export function popularitysList(url,data) {
+export function findPopularitysList (url, data) {
   return Taro.request({
-    url,
-    data,
+    url: url,
+    data: data,
     ...get_config
   })
 }
@@ -105,22 +104,132 @@ export function popularitysList(url,data) {
  * @param {*} url 
  * @param {*} data 
  */
-export function newProductsList(url,data) {
- return Taro.request({
-   url,
-   data,
-   ...get_config
- }) 
+export function findNewProductsList (url, data) {
+  return Taro.request({
+    url: url,
+    data: data,
+    ...get_config
+  })
 }
 /**
  * 预告
  * @param {*} url 
  * @param {*} data 
  */
-export function noticesList(url,data) {
+export function findNoticesList (url, data) {
+  return Taro.request({
+    url: url,
+    data: data,
+    ...get_config
+  })
+}
+
+// photo 摄影作品
+export function findPhotoList (url, data) {
+  return Taro.request({
+    url: url,
+    data: data,
+    ...get_config
+  })
+}
+
+// movies
+export function findMovieList (url, data) {
+  return Taro.request({
+    url: url,
+    data: data,
+    ...get_config
+  })
+}
+
+/**
+ * @param {*} url
+ * @param {*} data id: 1, danmu: danmu }
+ */
+export function saveDanmu (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
+  })
+}
+/**
+ * 
+ * @param {*} url 
+ * @param {id:id} data 
+ */
+export function findWorksDetail (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
+  })
+}
+/**
+ * 
+ * @param {*} url 
+ * @param {id:worksId} data 
+ */
+export function findDanmuList (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
+  })
+}
+/**
+ * 
+ * @param {*} url 
+ * @param {id:authorId} data 
+ */
+export function findAuthorMessage (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
+  })
+}
+
+// selfspace
+// 获取用户信息
+
+export function findUserinfo (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
+  })
+}
+
+export function findContributeUrl (url, data) {
   return Taro.request({
     url,
     data,
     ...get_config
+  })
+}
+/**
+ * //提交反馈意见
+ * @param {*} url 
+ * @param {content: this.state.Feedback} data 
+ */
+export function saveFeedback (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
+  })
+}
+
+/**
+ * 保存用户信息
+ * @param {*} url 
+ * @param {*} data 用户信息对象
+ */
+export function saveUserInfo (url, data) {
+  return Taro.request({
+    url,
+    data,
+    ...post_config
   })
 }

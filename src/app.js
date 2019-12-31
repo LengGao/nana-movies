@@ -19,7 +19,7 @@ class App extends Component {
 
   config = {
     pages: [
-      // 'pages/index/index', //首页 展示照片-介绍小程序作用
+      'pages/index/index', //首页 展示照片-介绍小程序作用
       'pages/home/home',//影评- 新品 - 人气
       'pages/photoshow/photoshow',//照片展示页  
       'pages/movieshow/movieshow',// 电影展示页码,
@@ -33,7 +33,10 @@ class App extends Component {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
+      enablePullDownRefresh: true,
+      pullRefresh: 'YES',
+      allowsBounceVertical: 'YES'
     },
     tabBar: {
       color: '#000000',
@@ -68,6 +71,14 @@ class App extends Component {
           text: '个人中心'
         }
       ]
+    },
+    permission: {
+      'scope.userInfo': {
+        "desc": "允许应该访问用户信息"
+      },
+      "scope.writePhotosAlbum": {
+        "desc": "允许应该访问系统储存"
+      }
     }
   }
 
