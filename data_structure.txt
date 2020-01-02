@@ -15,7 +15,7 @@ this.state = {
     noticeB1arText: { id: '001', link: '', content: '这是 NoticeB1ar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通
     // tabBar 当前所处index
     current: 0,
-    // 轮播图链表 link = '广告链接'，上传时间
+    // 轮播图链表 link = '广告链接'，上传时间 advertisement
     swiperList: [
         {
             id: '', imageUrl: '', link: '', upDate: '',
@@ -59,7 +59,7 @@ this.offset = 0;
 this.pageSize = 10;
 this.total = 0;
 
-Photoshow // 摄影作评
+Photoshow // 摄影作评 resourcesPhoto
 
 this.state = {
     ImageList: [
@@ -68,10 +68,12 @@ this.state = {
           authorName: 'name',
           authorHeader: '../../static/img/default.jpg',
           authorFrom: '来自哪里',
+          category:'类别'
           worksLink: '../../static/img/default.jpg',
           worksId: '001',
           worksType: 'photo',
           publihTime: '2019-12-12'
+          lowerTime: '2020-12-12'
         }
     ],
 }
@@ -80,7 +82,7 @@ this.pageSize = 10;
 this.total = 0;
 
 
-Movieshow // 影视列表
+Movieshow // 影视列表 resourcesMovies
 this.state = {
     VidemoList: [
        {
@@ -89,10 +91,13 @@ this.state = {
           authorHeader: '../../static/img/default.jpg',
           authorFrom: '来自哪里',
           worksId: '001',
+          worksName:'亮剑'
+          category:'类别'
           coverLink: 'http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg',
           worksType: ' movie',
           worksLink: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-          publishTime: '2019-12-12'
+          publishTime: '2019-12-12',
+          lowerTime: '2020-12-12'
         }
     ]
 }
@@ -178,5 +183,8 @@ this.state = {
         city: '耒阳',
         /** 国家，如：`China` */
         country: '中国',
-    },
+    },IDENTITYTYPE
+    identitytype IDENTIFIER
+    identifier CREDENTIAL credental\
+    IFVERIFIED ifverified
 }
