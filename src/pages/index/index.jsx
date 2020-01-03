@@ -9,25 +9,26 @@ export default class Index extends Component {
     navigationBarTitleText: '欢迎来到娜娜影视圈'
   }
 
-  handlerChange(e) {
+  handlerChange (e) {
     if (e.detail.current === 3) {
       setTimeout(() => {
         // 去搜全页面
         Taro.switchTab({
-          url: '/pages/home/home'
+          // url: '/pages/home/home'
+          url: '/pages/photoshow/photoshow'
         })
       }, 1000);
     }
   }
 
 
-  render() {
+  render () {
     return (
       <View className='index'>
         <Swiper
           className='swiper'
           indicatorColor='#999'
-          indicatorActiveColor='#333' 
+          indicatorActiveColor='#333'
           indicatorDots
           autoplay={false}
           onChange={this.handlerChange.bind(this)}
