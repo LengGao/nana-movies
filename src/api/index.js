@@ -1,11 +1,13 @@
 import Taro from '@tarojs/taro'
 
-const BASE_URL =  'https://snack.bayou-tech.cn//json/xiaodageng/'
+// const BASE_URL = 'https://snack.bayou-tech.cn//json/xiaodageng/'
 // const BASE_URL =  'https://snack.bayou-tech.cn//json/hanyuhao/'
 // const BASE_URL =  'https://snack.bayou-tech.cn//json/hanyuhao/'
 // /home/www/snack.bayou-tech.cn/public/json/xiaodageng/
-// const BASE_URL = '127.0.0.1'
-const BASE_IMAGE_URL = '127.0.0.1'
+// const BASE_URL = '127.0.0.1 http://localhost:3000/'
+const BASE_URL = 'http://localhost:80'
+const BASE_IMAGE_URL = 'http://localhost/public/images/';
+
 const api = require('./request.js')
 /**
  可以使用拦截器在请求发出前或发出后做一些额外操作。
@@ -15,8 +17,8 @@ const api = require('./request.js')
  代表请求参数。拦截器内最后需要调用 chain.proceed(requestParams) 以调用下一个拦截器或发起请求。
  */
 const interceptor = function (chain) {
-  let  requestParams = chain.requestParams
-  let { data ,url } = requestParams
+  let requestParams = chain.requestParams
+  let { data, url } = requestParams
   // data = Object.assign({token:'token'},data)
   requestParams.data = data
   requestParams.url = BASE_URL + url

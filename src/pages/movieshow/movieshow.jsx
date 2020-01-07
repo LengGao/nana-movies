@@ -78,7 +78,7 @@ export default class Movieshow extends Component {
   }
 
   initData () {
-    api.findMovieList('all.json')
+    api.findMovieList('/findMovieList')
   }
 
   getDate () {
