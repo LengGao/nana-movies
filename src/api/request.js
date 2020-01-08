@@ -226,9 +226,17 @@ export function saveFeedback (url, data) {
  * @param {*} url 
  * @param {*} data 用户信息对象
  */
-export function saveUserInfo (url, data) {
+export function saveUserInfo (data) {
   return Taro.request({
-    url,
+    url: '/saveUserInfo',
+    data,
+    ...post_config
+  })
+}
+
+export function authorizationLogin (data) {
+  Taro.request({
+    url: '/wxLogin',
     data,
     ...post_config
   })

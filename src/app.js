@@ -20,7 +20,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index', //首页 展示照片-介绍小程序作用
-      // 'pages/home/home',//影评- 新品 - 人气
+      // 'pages/home/home',//影评- 新品 - 人气  
       'pages/photoshow/photoshow',//照片展示页  
       'pages/movieshow/movieshow',// 电影展示页码,
       'pages/movieshow/movieDetail', // 电影详情 播放

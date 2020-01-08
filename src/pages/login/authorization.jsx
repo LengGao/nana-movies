@@ -32,11 +32,11 @@ export default class Authorization extends Component {
     }
   }
   handleGetUserInfo (e) {
-    // 使用此保存用户信息
-    // api.saveUserInfo()
-    console.log('e', e)
+    console.log(e);
+    api.saveUserInfo(e.detail.userInfo)
     Taro.switchTab({
-      url: '/pages/home/home'
+      // url: '/pages/home/home'
+      url: '/pages/photoshow/photoshow'
     })
   }
 
@@ -45,6 +45,7 @@ export default class Authorization extends Component {
     let currentPages = Taro.getCurrentPages()
     console.log('currentPages', currentPages)
   }
+
   componentDidMount () {
   }
 

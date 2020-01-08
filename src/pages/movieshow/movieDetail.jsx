@@ -61,13 +61,13 @@ export default class MovieDetail extends Component {
   }
 
   ininData () {
-    api.findWorksDetail('all.json', { worksId: 1 })
-    api.findDanmuList('all.json', { worksId: 1 })
-    api.findAuthorMessage('all.json', { worksId: 1 })
+    api.findWorksDetail('/findWorksDetail', { worksId: '001' })
+    // api.findDanmuList('all.json', { worksId: 1 })
+    // api.findAuthorMessage('all.json', { worksId: 1 })
   }
 
   componentWillMount () {
-    // return this.ininData()
+    return this.ininData()
   }
 
   componentDidMount () { }
