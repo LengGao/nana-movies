@@ -3,6 +3,7 @@ import { View, Text, Image, Button } from '@tarojs/components'
 import log from '../../static/images/cover/default.jpg'
 import './authorization.scss'
 import api from '@/api/'
+import { storage, toast } from '@/utils/'
 
 
 export default class Authorization extends Component {
@@ -32,18 +33,23 @@ export default class Authorization extends Component {
     }
   }
   handleGetUserInfo (e) {
-    console.log(e);
-    api.saveUserInfo(e.detail.userInfo)
-    Taro.switchTab({
-      // url: '/pages/home/home'
-      url: '/pages/photoshow/photoshow'
+    api.saveUserInfo(e.detail.userInfo).then(res => {
+      console.log("res", res);
+      if (res.data.token) {
+        storage.setStorageSync('token', res.data.token)
+        Taro.switchTab({
+          url: '/pages/selfspace/selfspace'
+        })
+      } else {
+        toast.error_Short('授权登录失败')
+      }
     })
   }
 
 
   componentWillMount () {
-    let currentPages = Taro.getCurrentPages()
-    console.log('currentPages', currentPages)
+    // let currentPages = Taro.getCurrentPages()
+    // console.log('currentPages', currentPages)
   }
 
   componentDidMount () {

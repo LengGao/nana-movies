@@ -61,7 +61,7 @@ export default class MovieDetail extends Component {
   }
 
   ininData () {
-    api.findWorksDetail('/findWorksDetail', { worksId: '001' })
+    api.findWorksDetail('/findWorksDetail', { worksId: '1' })
     // api.findDanmuList('all.json', { worksId: 1 })
     // api.findAuthorMessage('all.json', { worksId: 1 })
   }
@@ -97,7 +97,7 @@ export default class MovieDetail extends Component {
           vslideGesture
           showMuteBtn
         ></Video>
-        {/* <video></video> */}
+        {/* <video></video> 
         <View className='danmu-box'>
           <AtInput
             className='danmu- input'
@@ -110,7 +110,7 @@ export default class MovieDetail extends Component {
             onChange={this.handleChange.bind(this)}
           />
           <AtButton className='danmu-button' type='primary' onClick={this.handlerPushDanmu.bind(this)}>添加弹幕</AtButton>
-        </View>
+        </View>*/}
         <View className='author'>
           <Image src={this.state.VidemoDetail.authorHeader} mode='aspectFit' />
           <View className='info'>

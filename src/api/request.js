@@ -72,6 +72,14 @@ const post_config = POST_CONFIG();
 // console.log('GET_CONFIG :', demo);
 // 请求 填写url + data 最后戴上相关配置
 
+//
+export function getHomeImages () {
+  return Taro({
+    url: '',
+    ...get_config
+  })
+}
+
 // home
 export function findSwiperList (url, data) {
   return Taro.request({

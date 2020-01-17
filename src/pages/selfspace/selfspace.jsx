@@ -149,12 +149,14 @@ export default class Selfspace extends Component {
     // 检查是否有token
     let token = storage.getStorageSync('token')
     let validator = new Validator()
+    console.log('token', token);
+
     return !validator.isEmptyValue(token)
   }
 
   ininData () {
-    api.findUserinfo()
-    api.findContributeUrl()
+    // api.findUserinfo()
+    // api.findContributeUrl()
   }
 
   componentWillMount () {
