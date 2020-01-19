@@ -135,7 +135,7 @@ export function findNoticesList (url, data) {
 // photo 摄影作品
 export function findPhotoList (url, data) {
   return Taro.request({
-    url: url,
+    url: '/findPhotoList',
     data: data,
     ...get_config
   })

@@ -73,7 +73,7 @@ export default class Photoshow extends Component {
    * @param {*} frequency 次数
    */
   initData () {
-    api.findPhotoList('/findPhotoList')
+    api.findPhotoList()
   }
 
   getDate () {
